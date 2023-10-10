@@ -37,7 +37,10 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Report> reports = new ArrayList<>();
 
-    // == 위도, 경도 업데이트 == //
+    // == 비밀번호, 위도, 경도 업데이트 == //
+    public void updatePassword(String password) {
+        this.password = password;
+    }
     public void updateLatitude(float latitude){
         this.latitude = latitude;
     }
