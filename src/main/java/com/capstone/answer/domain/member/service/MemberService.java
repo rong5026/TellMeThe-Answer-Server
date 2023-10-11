@@ -7,6 +7,7 @@ import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import java.util.Optional;
 
 public interface MemberService {
+
     //회원가입
     Member signUp(MemberSignUpDto memberSignUpDto);
 
@@ -20,5 +21,5 @@ public interface MemberService {
     void delete(Long memberId);
 
     //회원 정  조회
-    void getInfo(Long MemberId) throws Exception;
+    Member getInfo(Long MemberId) throws Exception;
 }

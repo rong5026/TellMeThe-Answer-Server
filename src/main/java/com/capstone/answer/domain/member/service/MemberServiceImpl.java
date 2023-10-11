@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -62,10 +63,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     /**
-     * 회원 정보 조보
+     * 회원 정보 조회
      */
     @Override
-    public void getInfo(Long memberId) throws Exception{
+    public Member getInfo(Long memberId) throws Exception{
         Member findMember = memberRepository.findById(memberId).orElseThrow(()-> new Exception("존재하지 않는 회원입니다."));
+        return findMember;
     }
 }

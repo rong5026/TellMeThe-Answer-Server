@@ -1,7 +1,6 @@
 package com.capstone.answer.domain.member.repository;
 
 import com.capstone.answer.domain.member.Member;
-import com.capstone.answer.domain.member.dto.MemberLoginDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
