@@ -3,6 +3,7 @@ package com.capstone.answer.domain.report;
 
 import com.capstone.answer.domain.BaseTimeEntity;
 import com.capstone.answer.domain.image.Image;
+import com.capstone.answer.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-@Table(name = "member")
+@Table(name = "report")
 @Getter
 public class Report extends BaseTimeEntity {
 
@@ -39,6 +40,11 @@ public class Report extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "reports", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Image> imageLink = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member writer;
+
 
     // == 게시글 업데이트 == //
     // 제목 업데이트

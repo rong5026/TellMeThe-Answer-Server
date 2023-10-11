@@ -38,6 +38,9 @@ out/
 
 src/main/resources/application.properties
 
+# 이거 왜 인식을 못하냐~~~~~~~
+.gradle
+../Server/out
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij
