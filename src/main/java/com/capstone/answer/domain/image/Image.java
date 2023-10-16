@@ -1,11 +1,9 @@
 package com.capstone.answer.domain.image;
 
 import com.capstone.answer.domain.BaseTimeEntity;
-import com.capstone.answer.domain.report.Report;
+import com.capstone.answer.domain.report.entity.Report;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.io.File;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,7 +19,7 @@ public class Image extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id")
-    private Report reports;
+    private Report report;
 
     @Column(name = "image_Link")
     private String imageLink;

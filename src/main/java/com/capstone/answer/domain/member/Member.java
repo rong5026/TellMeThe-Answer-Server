@@ -2,8 +2,7 @@ package com.capstone.answer.domain.member;
 
 
 import com.capstone.answer.domain.BaseTimeEntity;
-import com.capstone.answer.domain.image.Image;
-import com.capstone.answer.domain.report.Report;
+import com.capstone.answer.domain.report.entity.Report;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,9 +33,8 @@ public class Member extends BaseTimeEntity {
     @Column(length = 20)
     private float longitude;
 
-    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Report> reports = new ArrayList<>();
-
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Report> reports = new ArrayList<>();
     // == 비밀번호, 위도, 경도 업데이트 == //
     public void updatePassword(String password) {
         this.password = password;
