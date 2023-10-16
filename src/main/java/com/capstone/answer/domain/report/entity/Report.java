@@ -25,8 +25,11 @@ public class Report extends BaseTimeEntity {
     @Column(nullable = false, length = 40)
     private String title;
 
-    @Column(nullable = false, length = 40)
-    private String location;
+    @Column(length = 20)
+    private float latitude;
+
+    @Column(length = 20)
+    private float longitude;
 
     @Lob
     @Column(nullable = false)
