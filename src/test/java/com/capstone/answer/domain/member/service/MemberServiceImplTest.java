@@ -1,10 +1,9 @@
 package com.capstone.answer.domain.member.service;
 
 import com.capstone.answer.domain.member.Member;
-import com.capstone.answer.domain.member.dto.MemberSignUpDto;
+import com.capstone.answer.domain.member.dto.MemberSignUpAndLoginDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.repository.MemberRepository;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -41,15 +40,15 @@ class MemberServiceImplTest {
         em.flush();
     }
 
-    MemberSignUpDto makeMemberSignUpDto(){
-        MemberSignUpDto memberSignUpDto = new MemberSignUpDto(email, password);
-        return memberSignUpDto;
+    MemberSignUpAndLoginDto makeMemberSignUpDto(){
+        MemberSignUpAndLoginDto memberSignUpAndLoginDto = new MemberSignUpAndLoginDto(email, password);
+        return memberSignUpAndLoginDto;
     }
 
     @Test
     void 성공_회원가입() throws Exception{
         //given
-        MemberSignUpDto memberDto = makeMemberSignUpDto();
+        MemberSignUpAndLoginDto memberDto = makeMemberSignUpDto();
 
         //when
         Member member1 = memberService.signUp(memberDto);
@@ -62,12 +61,12 @@ class MemberServiceImplTest {
     @Test
     void 성공_로그인() throws Exception{
         //given
-        MemberSignUpDto memberDto = makeMemberSignUpDto();
+        MemberSignUpAndLoginDto memberDto = makeMemberSignUpDto();
 
         //when
         memberService.signUp(memberDto);
         Member findMember = memberRepository.findByEmail(memberDto.email()).orElseThrow(() -> new Exception("존재하지 않는 회원입니다."));
-        Optional<Member> loginMember = memberService.login(email, password);
+        Optional<Member> loginMember = memberService.login(memberDto);
 
         //then
         assertThat(findMember).isEqualTo(loginMember.get());
@@ -76,11 +75,12 @@ class MemberServiceImplTest {
     @Test
     void 실패_로그인() throws Exception{
         //given
-        MemberSignUpDto memberDto = makeMemberSignUpDto();
+        MemberSignUpAndLoginDto memberSignUpDto = makeMemberSignUpDto();
+        MemberSignUpAndLoginDto memberLoginDto = new MemberSignUpAndLoginDto(email, "test");
 
         //when
-        memberService.signUp(memberDto);
-        Optional<Member> loginMember = memberService.login(email, "error");
+        memberService.signUp(memberSignUpDto);
+        Optional<Member> loginMember = memberService.login(memberLoginDto);
 
         //then
         assertThat(loginMember).isEmpty();
@@ -238,10 +238,10 @@ class MemberServiceImplTest {
     @Test
     void 성공_회원조회(){
         //given
-        MemberSignUpDto memberSignUpDto1 = new MemberSignUpDto(email, password);
-        MemberSignUpDto memberSignUpDto2 = new MemberSignUpDto("email2", "password");
-        memberService.signUp(memberSignUpDto1);
-        memberService.signUp(memberSignUpDto2);
+        MemberSignUpAndLoginDto memberSignUpAndLoginDto1 = new MemberSignUpAndLoginDto(email, password);
+        MemberSignUpAndLoginDto memberSignUpAndLoginDto2 = new MemberSignUpAndLoginDto("email2", "password");
+        memberService.signUp(memberSignUpAndLoginDto1);
+        memberService.signUp(memberSignUpAndLoginDto2);
 
         //when
         List<Member> memberList = memberRepository.findAll();
