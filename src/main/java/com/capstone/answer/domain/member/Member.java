@@ -2,8 +2,7 @@ package com.capstone.answer.domain.member;
 
 
 import com.capstone.answer.domain.BaseTimeEntity;
-import com.capstone.answer.domain.image.Image;
-import com.capstone.answer.domain.report.Report;
+import com.capstone.answer.domain.report.entity.Report;
 import jakarta.persistence.*;
 import lombok.*;
 

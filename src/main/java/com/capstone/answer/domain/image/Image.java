@@ -1,11 +1,9 @@
 package com.capstone.answer.domain.image;
 
 import com.capstone.answer.domain.BaseTimeEntity;
-import com.capstone.answer.domain.report.Report;
+import com.capstone.answer.domain.report.entity.Report;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.io.File;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

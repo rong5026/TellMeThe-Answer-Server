@@ -1,4 +1,4 @@
-package com.capstone.answer.domain.report;
+package com.capstone.answer.domain.report.entity;
 
 
 import com.capstone.answer.domain.BaseTimeEntity;
