@@ -1,8 +1,11 @@
 package com.capstone.answer.domain.report.service;
 
+import com.capstone.answer.domain.report.entity.Report;
+
 public interface ReportService {
 
     // 병해신고
+
 
     // 신고 수정
 
