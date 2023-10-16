@@ -19,7 +19,7 @@ public class Image extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id")
-    private Report reports;
+    private Report report;
 
     @Column(name = "image_Link")
     private String imageLink;

@@ -4,8 +4,8 @@ import com.capstone.answer.domain.report.entity.Report;
 
 public interface ReportService {
 
-    // 병해신고
-
+    // 신고 추가
+    Report addReport(Report report, String memberEmail);
 
     // 신고 수정
 

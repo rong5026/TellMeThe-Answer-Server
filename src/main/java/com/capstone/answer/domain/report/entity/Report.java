@@ -9,6 +9,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,12 +19,17 @@ import java.util.List;
 @Getter
 public class Report extends BaseTimeEntity {
 
-    @Id @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "report_id", nullable = false)
     private Long id;
 
     @Column(nullable = false, length = 40)
     private String title;
+
+    @Lob
+    @Column(nullable = false)
+    private String content;
 
     @Column(length = 20)
     private float latitude;
@@ -31,44 +37,61 @@ public class Report extends BaseTimeEntity {
     @Column(length = 20)
     private float longitude;
 
-    @Lob
-    @Column(nullable = false)
-    private String content;
-
     @Column(nullable = false, length = 40)
     private String plant;
 
     @Column(nullable = false, length = 40)
     private String disease;
 
-    @OneToMany(mappedBy = "reports", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Image> imageLink = new ArrayList<>();
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member writer;
+    private Member member;
+
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> imageLink = new ArrayList<>();
 
 
-    // == 게시글 업데이트 == //
-    // 제목 업데이트
-    public void updateTitle(String title){
-        this.title = title;
+    // 신고 생성
+    public static Report createReport(Report report, Member member) {
+
+        return Report.builder()
+                .title(report.title)
+                .content(report.content)
+                .latitude(report.latitude)
+                .longitude(report.longitude)
+                .plant(report.plant)
+                .disease(report.disease)
+                .member(member)
+                .build();
     }
-    // 위치 업데이트
-    public void updateLocation(String location){
-        this.location = location;
-    }
-    // 본문 업데이트
-    public void updateContent(String content){
-        this.content = content;
-    }
-    // 식물이름 업데이트
-    public void updatePlant(String plant){
-        this.plant = plant;
-    }
-    // 병해 업데이트
-    public void updateDisease(String disease){
-        this.disease = disease;
-    }
+
+//    public void update(String title, String content) {
+//        this.title = title;
+//        this.content = content;
+//    }
+
+//
+//    // 제목 업데이트
+//    public void updateTitle(String title){
+//        this.title = title;
+//    }
+//    // 위치 업데이트
+//    public void updateLatitude(float latitude){
+//        this.latitude = latitude;
+//    }
+//
+//    public void updateLongitude(float longitude){this.longitude = longitude;}
+//    // 본문 업데이트
+//    public void updateContent(String content){
+//        this.content = content;
+//    }
+//    // 식물이름 업데이트
+//    public void updatePlant(String plant){
+//        this.plant = plant;
+//    }
+//    // 병해 업데이트
+//    public void updateDisease(String disease){
+//        this.disease = disease;
+//    }
 
 }
