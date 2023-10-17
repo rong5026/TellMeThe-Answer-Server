@@ -1,14 +1,14 @@
 package com.capstone.answer.domain.member.service;
 
 import com.capstone.answer.domain.member.Member;
-import com.capstone.answer.domain.member.dto.MemberSignUpDto;
+import com.capstone.answer.domain.member.dto.MemberInfoDto;
+import com.capstone.answer.domain.member.dto.MemberSignUpAndLoginDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,8 +22,8 @@ public class MemberServiceImpl implements MemberService{
      * 회원가입
      */
     @Override
-    public Member signUp(MemberSignUpDto memberSignUpDto) {
-        Member saveMember = memberSignUpDto.entity();
+    public Member signUp(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
+        Member saveMember = memberSignUpAndLoginDto.entity();
         memberRepository.findByEmail(saveMember.getEmail()).ifPresent(
                 value -> new Exception("이미 존재하는 이메일입니다.")
         );
@@ -34,8 +34,8 @@ public class MemberServiceImpl implements MemberService{
      * 로그인
      */
     @Override
-    public Optional<Member> login(String email, String password) {
-        return memberRepository.findByEmailAndPassword(email, password);
+    public Optional<Member> login(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
+        return memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.email(), memberSignUpAndLoginDto.password());
     }
 
     /**
@@ -66,8 +66,9 @@ public class MemberServiceImpl implements MemberService{
      * 회원 정보 조회
      */
     @Override
-    public Member getInfo(Long memberId) throws Exception{
+    public MemberInfoDto getInfo(Long memberId) throws Exception{
         Member findMember = memberRepository.findById(memberId).orElseThrow(()-> new Exception("존재하지 않는 회원입니다."));
-        return findMember;
+        MemberInfoDto memberInfoDto = new MemberInfoDto(findMember);
+        return memberInfoDto;
     }
 }
