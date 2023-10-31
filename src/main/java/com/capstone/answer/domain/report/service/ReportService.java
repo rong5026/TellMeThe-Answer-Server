@@ -1,11 +1,12 @@
 package com.capstone.answer.domain.report.service;
 
+import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.entity.Report;
 
 public interface ReportService {
 
     // 신고 추가
-    Report addReport(Report report, String memberEmail);
+    Report addReport(ReportAddDto reportAddDto);
 
     // 신고 수정
 

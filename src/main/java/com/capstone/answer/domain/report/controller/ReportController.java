@@ -1,6 +1,7 @@
 package com.capstone.answer.domain.report.controller;
 
 
+import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.service.ReportService;
 import com.capstone.answer.domain.report.service.ReportServiceImpl;
@@ -20,13 +21,12 @@ public class ReportController {
     private final ReportService reportService;
 
     // 신고 추가
-
     @PostMapping("/record")
-    public ResponseEntity<Object> addReport(@RequestBody Report report, @RequestParam("email") String memberEmail) {
+    public ResponseEntity<Object> addReport(@RequestBody ReportAddDto reportAddDto) {
 
         Map<String, Object> response = new HashMap<>();
 
-        Report result = reportService.addReport(report, memberEmail);
+        Report result = reportService.addReport(reportAddDto);
 
         if(result != null) {
             response.put("result", true);
@@ -37,6 +37,5 @@ public class ReportController {
             response.put("message", "Registeration Fail");
             return ResponseEntity.badRequest().body(response); // 400 Bad Request
         }
-
     }
 }

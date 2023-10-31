@@ -4,6 +4,7 @@ package com.capstone.answer.domain.report.entity;
 import com.capstone.answer.domain.BaseTimeEntity;
 import com.capstone.answer.domain.image.Image;
 import com.capstone.answer.domain.member.Member;
+import com.capstone.answer.domain.report.dto.ReportAddDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -50,17 +51,16 @@ public class Report extends BaseTimeEntity {
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> imageLink = new ArrayList<>();
 
-
     // 신고 생성
-    public static Report createReport(Report report, Member member) {
+    public static Report createReport(ReportAddDto reportAddDto, Member member) {
 
         return Report.builder()
-                .title(report.title)
-                .content(report.content)
-                .latitude(report.latitude)
-                .longitude(report.longitude)
-                .plant(report.plant)
-                .disease(report.disease)
+                .title(reportAddDto.getTitle())
+                .content(reportAddDto.getContent())
+                .latitude(reportAddDto.getLatitude())
+                .longitude(reportAddDto.getLongitude())
+                .plant(reportAddDto.getPlant())
+                .disease(reportAddDto.getDisease())
                 .member(member)
                 .build();
     }
@@ -70,28 +70,33 @@ public class Report extends BaseTimeEntity {
 //        this.content = content;
 //    }
 
-//
-//    // 제목 업데이트
-//    public void updateTitle(String title){
-//        this.title = title;
-//    }
-//    // 위치 업데이트
-//    public void updateLatitude(float latitude){
-//        this.latitude = latitude;
-//    }
-//
-//    public void updateLongitude(float longitude){this.longitude = longitude;}
-//    // 본문 업데이트
-//    public void updateContent(String content){
-//        this.content = content;
-//    }
-//    // 식물이름 업데이트
-//    public void updatePlant(String plant){
-//        this.plant = plant;
-//    }
-//    // 병해 업데이트
-//    public void updateDisease(String disease){
-//        this.disease = disease;
-//    }
+    // 제목 업데이트
+    public void updateTitle(String title){
+        this.title = title;
+    }
+
+    // 위치 업데이트
+    public void updateLatitude(float latitude){
+        this.latitude = latitude;
+    }
+
+    public void updateLongitude(float longitude){
+        this.longitude = longitude;
+    }
+
+    // 본문 업데이트
+    public void updateContent(String content){
+        this.content = content;
+    }
+
+    // 식물이름 업데이트
+    public void updatePlant(String plant){
+        this.plant = plant;
+    }
+
+    // 병해 업데이트
+    public void updateDisease(String disease){
+        this.disease = disease;
+    }
 
 }
