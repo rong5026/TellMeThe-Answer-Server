@@ -65,28 +65,20 @@ public class Report extends BaseTimeEntity {
                 .build();
     }
 
-//    public void update(String title, String content) {
-//        this.title = title;
-//        this.content = content;
-//    }
-
     // 제목 업데이트
     public void updateTitle(String title){
         this.title = title;
     }
 
-    // 위치 업데이트
-    public void updateLatitude(float latitude){
-        this.latitude = latitude;
-    }
-
-    public void updateLongitude(float longitude){
-        this.longitude = longitude;
-    }
-
     // 본문 업데이트
     public void updateContent(String content){
         this.content = content;
+    }
+
+    // 위치 업데이트
+    public void updateLocation(float latitude, float longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     // 식물이름 업데이트
