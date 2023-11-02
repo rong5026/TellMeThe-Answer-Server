@@ -26,7 +26,6 @@ public class ReportController {
 
         Map<String, Object> response = new HashMap<>();
         Report result = reportService.add(reportAddDto);
-
         if(result != null) {
             response.put("result", true);
             response.put("message", "Registeration Success");
@@ -40,19 +39,10 @@ public class ReportController {
 
     // 신고 업데이트
     @PostMapping("/update")
-    public ResponseEntity<Object> updateReport(@RequestBody ReportUpdateDto reportUpdateDto) {
+    public ResponseEntity<Map<String, Object>> updateReport(@RequestBody ReportUpdateDto reportUpdateDto) {
         Map<String, Object> response = new HashMap<>();
         boolean result = reportService.update(reportUpdateDto);
-
-        if(result) {
-            response.put("result", true);
-            response.put("message", "Update Success");
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("result", false);
-            response.put("message", "Update Fail");
-            return ResponseEntity.badRequest().body(response); // 400 Bad Request
-        }
+        return createResponse(result, "Update Success", "Update Fail");
     }
 
     // 신고 삭제
@@ -61,17 +51,23 @@ public class ReportController {
     public ResponseEntity<Map<String, Object>> delete(@PathVariable("reportId") Long reportId){
         Map<String, Object> response = new HashMap<>();
         boolean result = reportService.delete(reportId);
+        return createResponse(result, "Delete Success", "Delete Fail");
+    }
 
-        if(result) {
+    // 응답 메서드
+    private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {
+        Map<String, Object> response = new HashMap<>();
+        if (result) {
             response.put("result", true);
-            response.put("message", "Delete Success");
+            response.put("message", successMessage);
             return ResponseEntity.ok(response);
         } else {
             response.put("result", false);
-            response.put("message", "Delete Fail");
-            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+            response.put("message", failMessage);
+            return ResponseEntity.badRequest().body(response);
         }
     }
+
 
 
 
