@@ -54,6 +54,22 @@ public class ReportServiceImpl implements ReportService {
         return false;
     }
 
+    /**
+     * 신고삭제
+     */
+    @Override
+    public boolean delete(Long reportId) {
+
+        Optional<Report> optionalReport = reportRepository.findById(reportId);
+        if (optionalReport.isPresent()) {
+            Report report = optionalReport.get();
+            reportRepository.delete(report);
+            return true;
+        }
+        return false;
+    }
+
+    // 값이 있는지 확인
     private <T> void updateFieldIfNotNull(Consumer<T> updateMethod, T value) {
         if (value != null) {
             updateMethod.accept(value);

@@ -13,7 +13,7 @@ public interface ReportService {
     boolean update(ReportUpdateDto reportUpdateDto);
 
     // 신고 삭제
-
+    boolean delete(Long reportId);
     // 유저에 대한 신고아이디 조회
 
     // 신고아이디로 신고내역 조회
