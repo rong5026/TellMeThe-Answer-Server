@@ -9,8 +9,10 @@ import com.capstone.answer.domain.report.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -67,6 +69,30 @@ public class ReportServiceImpl implements ReportService {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 유저 신고내역 조회
+     */
+    @Override
+    public List<ReportUpdateDto> getReportByUser(Long memberId) {
+        List<Report> reports =reportRepository.getReportsByMemberId(memberId);
+        // Report 객체를 ReportUpdateDto로 매핑
+        List<ReportUpdateDto> reportUpdateDtos = reports.stream()
+                .map(report -> {
+                    ReportUpdateDto dto = new ReportUpdateDto();
+                    dto.setId(report.getId());
+                    dto.setTitle(report.getTitle());
+                    dto.setContent(report.getContent());
+                    dto.setLatitude(report.getLatitude());
+                    dto.setLongitude(report.getLongitude());
+                    dto.setPlant(report.getPlant());
+                    dto.setDisease(report.getDisease());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        return reportUpdateDtos;
     }
 
     // 값이 있는지 확인

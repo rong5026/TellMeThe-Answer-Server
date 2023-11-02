@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -47,12 +48,21 @@ public class ReportController {
 
     // 신고 삭제
     @DeleteMapping("/delete/{reportId}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable("reportId") Long reportId){
+    public ResponseEntity<Map<String, Object>> deleteReport(@PathVariable("reportId") Long reportId){
         Map<String, Object> response = new HashMap<>();
         boolean result = reportService.delete(reportId);
         return createResponse(result, "Delete Success", "Delete Fail");
     }
+
+    // 유저에 대한 신고내역
+    @GetMapping("/list/{memberId}")
+    public List<ReportUpdateDto> getUserReport(@PathVariable("memberId") Long memberId) {
+        List<ReportUpdateDto> reports = reportService.getReportByUser(memberId);
+        return reports;
+
+    }
+
+
 
     // 응답 메서드
     private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {
