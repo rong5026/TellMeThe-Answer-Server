@@ -1,14 +1,16 @@
 package com.capstone.answer.domain.report.service;
 
 import com.capstone.answer.domain.report.dto.ReportAddDto;
+import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
 
 public interface ReportService {
 
     // 신고 추가
-    Report addReport(ReportAddDto reportAddDto);
+    Report add(ReportAddDto reportAddDto);
 
     // 신고 수정
+    boolean update(ReportUpdateDto reportUpdateDto);
 
     // 신고 삭제
 

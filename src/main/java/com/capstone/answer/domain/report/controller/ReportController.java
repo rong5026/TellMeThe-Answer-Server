@@ -2,6 +2,7 @@ package com.capstone.answer.domain.report.controller;
 
 
 import com.capstone.answer.domain.report.dto.ReportAddDto;
+import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.service.ReportService;
 import com.capstone.answer.domain.report.service.ReportServiceImpl;
@@ -25,8 +26,7 @@ public class ReportController {
     public ResponseEntity<Object> addReport(@RequestBody ReportAddDto reportAddDto) {
 
         Map<String, Object> response = new HashMap<>();
-
-        Report result = reportService.addReport(reportAddDto);
+        Report result = reportService.add(reportAddDto);
 
         if(result != null) {
             response.put("result", true);
@@ -38,5 +38,24 @@ public class ReportController {
             return ResponseEntity.badRequest().body(response); // 400 Bad Request
         }
     }
+
+    // 신고 업데이트
+    @PostMapping("/update")
+    public ResponseEntity<Object> updateReport(@RequestBody ReportUpdateDto reportUpdateDto) {
+        Map<String, Object> response = new HashMap<>();
+        boolean result = reportService.update(reportUpdateDto);
+
+        if(result != false) {
+            response.put("result", true);
+            response.put("message", "Update Success");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("result", false);
+            response.put("message", "Update Fail");
+            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+        }
+    }
+
+
 
 }
