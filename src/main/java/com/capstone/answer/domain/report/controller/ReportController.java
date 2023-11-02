@@ -15,13 +15,13 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-//@RequestMapping(value = "/record", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/record", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ReportController {
 
     private final ReportService reportService;
 
     // 신고 추가
-    @PostMapping("/record")
+    @PostMapping("/add")
     public ResponseEntity<Object> addReport(@RequestBody ReportAddDto reportAddDto) {
 
         Map<String, Object> response = new HashMap<>();
@@ -38,4 +38,5 @@ public class ReportController {
             return ResponseEntity.badRequest().body(response); // 400 Bad Request
         }
     }
+
 }

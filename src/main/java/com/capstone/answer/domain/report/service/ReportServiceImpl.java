@@ -24,8 +24,8 @@ public class ReportServiceImpl implements ReportService {
     public Report addReport(ReportAddDto reportAddDto) {
 
         Member member = memberRepository.findReportByEmail(reportAddDto.getEmail());
-
         Report inputReport = Report.createReport(reportAddDto, member);
+
         return reportRepository.save(inputReport);
     }
 }
