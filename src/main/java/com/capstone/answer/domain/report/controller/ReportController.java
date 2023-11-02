@@ -56,9 +56,20 @@ public class ReportController {
 
     // 유저에 대한 신고내역
     @GetMapping("/list/{memberId}")
-    public List<ReportUpdateDto> getUserReport(@PathVariable("memberId") Long memberId) {
+    public ResponseEntity<Map<String, Object>> getUserReport(@PathVariable("memberId") Long memberId) {
+        Map<String, Object> response = new HashMap<>();
         List<ReportUpdateDto> reports = reportService.getReportByUser(memberId);
-        return reports;
+
+        if(reports != null) {
+            response.put("result", true);
+            response.put("message", "Check User List Success");
+            response.put("contents", reports);
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("result", false);
+            response.put("message", "Check User List Fail");
+            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+        }
 
     }
 
