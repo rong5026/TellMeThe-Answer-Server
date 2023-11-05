@@ -22,7 +22,9 @@ public class ReportController {
 
     private final ReportService reportService;
 
-    // 신고 추가
+    /**
+     * 신고추가
+     */
     @PostMapping("/add")
     public ResponseEntity<Object> addReport(@RequestBody ReportAddDto reportAddDto) {
 
@@ -39,21 +41,27 @@ public class ReportController {
         }
     }
 
-    // 신고 업데이트
+    /**
+     * 신고 업데이트
+     */
     @PostMapping("/update")
     public ResponseEntity<Map<String, Object>> updateReport(@RequestBody ReportUpdateDto reportUpdateDto) {
         boolean result = reportService.update(reportUpdateDto);
         return createResponse(result, "Update Success", "Update Fail");
     }
 
-    // 신고 삭제
+    /**
+     * 신고 삭제
+     */
     @DeleteMapping("/delete/{reportId}")
     public ResponseEntity<Map<String, Object>> deleteReport(@PathVariable("reportId") Long reportId){
         boolean result = reportService.delete(reportId);
         return createResponse(result, "Delete Success", "Delete Fail");
     }
 
-    // 유저에 대한 신고내역
+    /**
+     * 유저에 대한 신고내역
+     */
     @GetMapping("/list/{memberId}")
     public ResponseEntity<Map<String, Object>> getUserReport(@PathVariable("memberId") Long memberId) {
         Map<String, Object> response = new HashMap<>();
@@ -71,6 +79,9 @@ public class ReportController {
         }
     }
 
+    /**
+     * 모든 신고 리스트
+     */
     @GetMapping("/list/all")
     public ResponseEntity<Map<String, Object>> getAllReport()
     {
@@ -88,6 +99,7 @@ public class ReportController {
             return ResponseEntity.badRequest().body(response); // 400 Bad Request
         }
     }
+
     // 응답 메서드
     private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {
         Map<String, Object> response = new HashMap<>();
