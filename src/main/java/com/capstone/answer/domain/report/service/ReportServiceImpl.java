@@ -3,12 +3,12 @@ package com.capstone.answer.domain.report.service;
 import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.member.repository.MemberRepository;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
+import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -75,24 +75,27 @@ public class ReportServiceImpl implements ReportService {
      * 유저 신고내역 조회
      */
     @Override
-    public List<ReportUpdateDto> getReportByUser(Long memberId) {
+    public List<ReportListDto> getReportByUser(Long memberId) {
         List<Report> reports =reportRepository.getReportsByMemberId(memberId);
-        // Report 객체를 ReportUpdateDto로 매핑
-        List<ReportUpdateDto> reportUpdateDtos = reports.stream()
-                .map(report -> {
-                    ReportUpdateDto dto = new ReportUpdateDto();
-                    dto.setId(report.getId());
-                    dto.setTitle(report.getTitle());
-                    dto.setContent(report.getContent());
-                    dto.setLatitude(report.getLatitude());
-                    dto.setLongitude(report.getLongitude());
-                    dto.setPlant(report.getPlant());
-                    dto.setDisease(report.getDisease());
-                    return dto;
-                })
+
+        List<ReportListDto> reportList = reports.stream()
+                .map(this::convertToReportListAll)
                 .collect(Collectors.toList());
 
-        return reportUpdateDtos;
+        return reportList;
+    }
+
+    /**
+     * 모든 신고리스트 조회
+     */
+    @Override
+    public List<ReportListDto> getAllReport() {
+        List<Report> reports = reportRepository.findAll();
+        List<ReportListDto> reportList = reports.stream()
+                .map(this::convertToReportListAll)
+                .toList();
+
+        return reportList;
     }
 
     // 값이 있는지 확인
@@ -100,5 +103,19 @@ public class ReportServiceImpl implements ReportService {
         if (value != null) {
             updateMethod.accept(value);
         }
+    }
+
+    // ReportAllList 할 때 DTO로 전환
+    private ReportListDto convertToReportListAll(Report report) {
+        ReportListDto dto = new ReportListDto();
+        dto.setId(report.getId());
+        dto.setTitle(report.getTitle());
+        dto.setContent(report.getContent());
+        dto.setLatitude(report.getLatitude());
+        dto.setLongitude(report.getLongitude());
+        dto.setPlant(report.getPlant());
+        dto.setDisease(report.getDisease());
+        dto.setMemberId(report.getMember().getId());
+        return dto;
     }
 }

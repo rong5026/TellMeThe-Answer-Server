@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
-    List<Report> getReportsByMemberId(@Param("memberId") Long memberId);
+    List<Report> getReportsByMemberId(Long memberId);
 }
 
 
