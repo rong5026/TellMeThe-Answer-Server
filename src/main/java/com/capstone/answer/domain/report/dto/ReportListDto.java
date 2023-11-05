@@ -4,15 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 @Getter
 @Setter
-public class ReportListDto {
+public class ReportListDto extends BaseReportDto{
     
     private Long reportId;
-    private String title;
-    private String content;
-    private float latitude;
-    private float longitude;
-    private String plant;
-    private String disease;
     private Long memberId;
 //   이미지 리스트
 }
