@@ -7,7 +7,6 @@ import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

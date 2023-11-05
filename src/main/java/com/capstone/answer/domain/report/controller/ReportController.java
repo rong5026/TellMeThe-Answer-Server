@@ -2,6 +2,7 @@ package com.capstone.answer.domain.report.controller;
 
 
 import com.capstone.answer.domain.report.dto.ReportAddDto;
+import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.service.ReportService;
@@ -41,7 +42,6 @@ public class ReportController {
     // 신고 업데이트
     @PostMapping("/update")
     public ResponseEntity<Map<String, Object>> updateReport(@RequestBody ReportUpdateDto reportUpdateDto) {
-        Map<String, Object> response = new HashMap<>();
         boolean result = reportService.update(reportUpdateDto);
         return createResponse(result, "Update Success", "Update Fail");
     }
@@ -49,7 +49,6 @@ public class ReportController {
     // 신고 삭제
     @DeleteMapping("/delete/{reportId}")
     public ResponseEntity<Map<String, Object>> deleteReport(@PathVariable("reportId") Long reportId){
-        Map<String, Object> response = new HashMap<>();
         boolean result = reportService.delete(reportId);
         return createResponse(result, "Delete Success", "Delete Fail");
     }
@@ -58,7 +57,7 @@ public class ReportController {
     @GetMapping("/list/{memberId}")
     public ResponseEntity<Map<String, Object>> getUserReport(@PathVariable("memberId") Long memberId) {
         Map<String, Object> response = new HashMap<>();
-        List<ReportUpdateDto> reports = reportService.getReportByUser(memberId);
+        List<ReportListDto> reports = reportService.getReportByUser(memberId);
 
         if(reports != null) {
             response.put("result", true);
@@ -70,11 +69,25 @@ public class ReportController {
             response.put("message", "Check User List Fail");
             return ResponseEntity.badRequest().body(response); // 400 Bad Request
         }
-
     }
 
+    @GetMapping("/list/all")
+    public ResponseEntity<Map<String, Object>> getAllReport()
+    {
+        Map<String, Object> response = new HashMap<>();
+        List<ReportListDto> reports = reportService.getAllReport();
 
-
+        if (reports != null) {
+            response.put("result", true);
+            response.put("message", "Check User List Success");
+            response.put("contents", reports);
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("result", false);
+            response.put("message", "Check User List Fail");
+            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+        }
+    }
     // 응답 메서드
     private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {
         Map<String, Object> response = new HashMap<>();
