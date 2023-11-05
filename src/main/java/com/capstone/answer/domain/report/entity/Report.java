@@ -22,7 +22,7 @@ public class Report extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "report_id", nullable = false)
-    private Long id;
+    private Long reportId;
 
     @Column(nullable = false, length = 40)
     private String title;

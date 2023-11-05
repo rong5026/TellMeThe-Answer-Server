@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ReportUpdateDto {
 
-    private Long id;
+    private Long reportId;
     private String title;
     private String content;
     private float latitude;

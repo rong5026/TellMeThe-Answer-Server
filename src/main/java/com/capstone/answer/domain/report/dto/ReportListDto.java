@@ -5,7 +5,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReportListDto {
-    private Long id;
+    private Long reportId;
     private String title;
     private String content;
     private float latitude;

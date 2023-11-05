@@ -39,7 +39,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public boolean update(ReportUpdateDto reportUpdateDto) {
 
-        Optional<Report> optionalReport = reportRepository.findById(reportUpdateDto.getId());
+        Optional<Report> optionalReport = reportRepository.findById(reportUpdateDto.getReportId());
 
         if (optionalReport.isPresent()) {
             Report report = optionalReport.get();
@@ -108,7 +108,7 @@ public class ReportServiceImpl implements ReportService {
     // ReportAllList 할 때 DTO로 전환
     private ReportListDto convertToReportListAll(Report report) {
         ReportListDto dto = new ReportListDto();
-        dto.setId(report.getId());
+        dto.setReportId(report.getReportId());
         dto.setTitle(report.getTitle());
         dto.setContent(report.getContent());
         dto.setLatitude(report.getLatitude());
