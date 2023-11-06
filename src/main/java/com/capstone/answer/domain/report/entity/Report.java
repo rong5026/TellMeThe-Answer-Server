@@ -2,14 +2,12 @@ package com.capstone.answer.domain.report.entity;
 
 
 import com.capstone.answer.domain.BaseTimeEntity;
-import com.capstone.answer.domain.image.Image;
 import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
