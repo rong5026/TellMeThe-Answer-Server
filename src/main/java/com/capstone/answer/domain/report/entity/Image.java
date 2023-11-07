@@ -22,4 +22,9 @@ public class Image extends BaseTimeEntity {
 
     @Column(name = "image_Link")
     private String imageLink;
+
+    public void updateImageLink(String imageLink){
+        this.imageLink = imageLink;
+    }
 }
+
