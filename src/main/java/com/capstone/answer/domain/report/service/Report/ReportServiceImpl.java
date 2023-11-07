@@ -1,14 +1,15 @@
-package com.capstone.answer.domain.report.service;
+package com.capstone.answer.domain.report.service.Report;
 
 import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.member.repository.MemberRepository;
+import com.capstone.answer.domain.report.dto.ImageDto1;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
+import com.capstone.answer.domain.report.repository.ImageRepository;
 import com.capstone.answer.domain.report.repository.ReportRepository;
 import com.capstone.answer.domain.s3.service.S3Service;
-import com.capstone.answer.domain.s3.service.S3ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,7 @@ public class ReportServiceImpl implements ReportService {
 
     private final ReportRepository reportRepository;
     private final MemberRepository memberRepository;
+    private final ImageRepository imageRepository;
     private final S3Service s3Service;
 
     /**
@@ -34,18 +36,29 @@ public class ReportServiceImpl implements ReportService {
     public void add(ReportAddDto reportAddDto) throws IOException {
 
         Member member = memberRepository.findReportByEmail(reportAddDto.getEmail());
-        // 본문 저장
+
         Report inputReport = Report.createReport(reportAddDto, member);
 
-        // S3 저장
-        MultipartFile[] multipartFileList = reportAddDto.getMultipartFileList();
 
+        MultipartFile[] multipartFileList = reportAddDto.getMultipartFileList();
         if (multipartFileList != null) {
-            s3Service.saveUploadFile(multipartFileList);
-            System.out.println("저장을 완료하였습니다");
+            // S3 저장
+            List<String> imagePathList = s3Service.saveUploadFile(multipartFileList);
+            // 본문 저장
+            Report report = reportRepository.save(inputReport);
+
+            ImageDto1 imageDto1 = new ImageDto1();
+            imageDto1.setReport(report);
+            imageDto1.setImageLink(imagePathList.get(0));
+            /** TODO
+             * 이미지 dto를 만들어서 db에 image테이블에 저장*/
+//            imageRepository.save(imageDto1);
+            // report id 받아서 image 저장해야함
+//            System.out.println(reportAddDto.get);
+            // image에 링크 저장해야함.
         }
 
-        reportRepository.save(inputReport);
+
     }
 
 

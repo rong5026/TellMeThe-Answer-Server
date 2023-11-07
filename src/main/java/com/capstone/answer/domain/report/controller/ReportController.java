@@ -1,26 +1,16 @@
 package com.capstone.answer.domain.report.controller;
 
 
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
-import com.capstone.answer.domain.report.entity.Report;
-import com.capstone.answer.domain.report.service.ReportService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.multipart.MultipartFile;
+import com.capstone.answer.domain.report.service.Report.ReportService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.capstone.answer.domain.report.service;
+package com.capstone.answer.domain.report.service.Report;
 
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.dto.ReportListDto;
