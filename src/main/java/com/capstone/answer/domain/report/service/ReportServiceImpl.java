@@ -7,8 +7,13 @@ import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.repository.ReportRepository;
+import com.capstone.answer.domain.s3.service.S3Service;
+import com.capstone.answer.domain.s3.service.S3ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -20,18 +25,29 @@ public class ReportServiceImpl implements ReportService {
 
     private final ReportRepository reportRepository;
     private final MemberRepository memberRepository;
+    private final S3Service s3Service;
 
     /**
      * 신고추가
      */
     @Override
-    public Report add(ReportAddDto reportAddDto) {
+    public void add(ReportAddDto reportAddDto) throws IOException {
 
         Member member = memberRepository.findReportByEmail(reportAddDto.getEmail());
+        // 본문 저장
         Report inputReport = Report.createReport(reportAddDto, member);
 
-        return reportRepository.save(inputReport);
+        // S3 저장
+        MultipartFile[] multipartFileList = reportAddDto.getMultipartFileList();
+
+        if (multipartFileList != null) {
+            s3Service.saveUploadFile(multipartFileList);
+            System.out.println("저장을 완료하였습니다");
+        }
+
+        reportRepository.save(inputReport);
     }
+
 
     /**
      * 신고수정

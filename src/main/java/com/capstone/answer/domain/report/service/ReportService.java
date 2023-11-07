@@ -4,12 +4,14 @@ import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
 import com.capstone.answer.domain.report.entity.Report;
+
+import java.io.IOException;
 import java.util.List;
 
 public interface ReportService {
 
     // 신고 추가
-    Report add(ReportAddDto reportAddDto);
+    void add(ReportAddDto reportAddDto) throws IOException;
 
     // 신고 수정
     boolean update(ReportUpdateDto reportUpdateDto);

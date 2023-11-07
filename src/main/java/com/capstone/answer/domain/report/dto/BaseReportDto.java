@@ -12,4 +12,4 @@ public class BaseReportDto {
     private float longitude;
     private String plant;
     private String disease;
-}
+    }

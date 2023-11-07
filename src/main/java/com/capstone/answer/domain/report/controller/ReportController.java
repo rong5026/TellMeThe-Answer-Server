@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +36,12 @@ public class ReportController {
      * 신고추가
      */
     @PostMapping("/add")
-    public ResponseEntity<Object> addReport(@RequestBody ReportAddDto reportAddDto) {
+    public ResponseEntity<Object> addReport(@ModelAttribute ReportAddDto reportAddDto) throws IOException {
 
         Map<String, Object> response = new HashMap<>();
-        Report result = reportService.add(reportAddDto);
+        reportService.add(reportAddDto);
+
+        String result = "df";
         if(result != null) {
             response.put("result", true);
             response.put("message", "Registeration Success");
