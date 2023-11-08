@@ -2,10 +2,8 @@ package com.capstone.answer.domain.report.service.Report;
 
 import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.member.repository.MemberRepository;
-import com.capstone.answer.domain.report.dto.ImageDto1;
-import com.capstone.answer.domain.report.dto.ReportAddDto;
-import com.capstone.answer.domain.report.dto.ReportListDto;
-import com.capstone.answer.domain.report.dto.ReportUpdateDto;
+import com.capstone.answer.domain.report.dto.*;
+import com.capstone.answer.domain.report.entity.Image;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.repository.ImageRepository;
 import com.capstone.answer.domain.report.repository.ReportRepository;
@@ -36,31 +34,20 @@ public class ReportServiceImpl implements ReportService {
     public void add(ReportAddDto reportAddDto) throws IOException {
 
         Member member = memberRepository.findReportByEmail(reportAddDto.getEmail());
-
         Report inputReport = Report.createReport(reportAddDto, member);
-
 
         MultipartFile[] multipartFileList = reportAddDto.getMultipartFileList();
         if (multipartFileList != null) {
             // S3 저장
             List<String> imagePathList = s3Service.saveUploadFile(multipartFileList);
-            // 본문 저장
+            // 본문 DB저장
             Report report = reportRepository.save(inputReport);
-
-            ImageDto1 imageDto1 = new ImageDto1();
-            imageDto1.setReport(report);
-            imageDto1.setImageLink(imagePathList.get(0));
-            /** TODO
-             * 이미지 dto를 만들어서 db에 image테이블에 저장*/
-//            imageRepository.save(imageDto1);
-            // report id 받아서 image 저장해야함
-//            System.out.println(reportAddDto.get);
-            // image에 링크 저장해야함.
+            // 이미지 링크 DB저장
+            ImageDto imageDto = new ImageDto(report,imagePathList.get(0));
+            Image image = imageDto.entity();
+            imageRepository.save(image);
         }
-
-
     }
-
 
     /**
      * 신고수정
