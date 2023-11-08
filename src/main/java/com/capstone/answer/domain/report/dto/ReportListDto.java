@@ -8,6 +8,7 @@ public class ReportListDto extends BaseReportDto{
     
     private Long reportId;
     private Long memberId;
+
 //   이미지 리스트
 }
 

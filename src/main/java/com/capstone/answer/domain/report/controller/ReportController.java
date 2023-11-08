@@ -47,7 +47,7 @@ public class ReportController {
      * 신고 업데이트
      */
     @PostMapping("/update")
-    public ResponseEntity<Map<String, Object>> updateReport(@RequestBody ReportUpdateDto reportUpdateDto) {
+    public ResponseEntity<Map<String, Object>> updateReport(@ModelAttribute ReportUpdateDto reportUpdateDto) throws IOException {
         boolean result = reportService.update(reportUpdateDto);
         return createResponse(result, "Update Success", "Update Fail");
     }

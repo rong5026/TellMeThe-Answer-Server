@@ -43,7 +43,7 @@ public class ReportServiceImpl implements ReportService {
             // 본문 DB저장
             Report report = reportRepository.save(inputReport);
             // 이미지 링크 DB저장
-            ImageDto imageDto = new ImageDto(report,imagePathList.get(0));
+            ImageDto imageDto = new ImageDto(report, imagePathList.get(0));
             Image image = imageDto.entity();
             imageRepository.save(image);
         }
@@ -53,7 +53,7 @@ public class ReportServiceImpl implements ReportService {
      * 신고수정
      */
     @Override
-    public boolean update(ReportUpdateDto reportUpdateDto) {
+    public boolean update(ReportUpdateDto reportUpdateDto) throws IOException {
 
         Optional<Report> optionalReport = reportRepository.findById(reportUpdateDto.getReportId());
 
@@ -61,12 +61,20 @@ public class ReportServiceImpl implements ReportService {
             Report report = optionalReport.get();
             updateFieldIfNotNull(report::updateTitle, reportUpdateDto.getTitle());
             updateFieldIfNotNull(report::updateContent, reportUpdateDto.getContent());
-            report.updateLocation(reportUpdateDto.getLatitude(), reportUpdateDto.getLongitude());
             updateFieldIfNotNull(report::updatePlant, reportUpdateDto.getPlant());
             updateFieldIfNotNull(report::updateDisease, reportUpdateDto.getDisease());
+            report.updateLocation(reportUpdateDto.getLatitude(), reportUpdateDto.getLongitude());
+
+            // image link 업데이트
+            updateFieldIfNotNull(report::updateImageLink,  report.getImageLink());
+
+            // S3 저장
+            MultipartFile[] multipartFileList = reportUpdateDto.getMultipartFileList();
+            if (multipartFileList != null) {
+                List<String> imagePathList = s3Service.saveUploadFile(multipartFileList);
+            }
 
             reportRepository.save(report);
-
             return true;
         }
         return false;

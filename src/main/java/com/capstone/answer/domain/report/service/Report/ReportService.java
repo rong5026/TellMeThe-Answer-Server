@@ -14,7 +14,7 @@ public interface ReportService {
     void add(ReportAddDto reportAddDto) throws IOException;
 
     // 신고 수정
-    boolean update(ReportUpdateDto reportUpdateDto);
+    boolean update(ReportUpdateDto reportUpdateDto) throws IOException;
 
     // 신고 삭제
     boolean delete(Long reportId);

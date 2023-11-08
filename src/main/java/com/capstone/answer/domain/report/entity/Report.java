@@ -6,6 +6,8 @@ import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,4 +90,6 @@ public class Report extends BaseTimeEntity {
         this.disease = disease;
     }
 
+    // 이미지 업데이트
+    public void updateImageLink(List<Image> imageLink) { this.imageLink = imageLink; }
 }
