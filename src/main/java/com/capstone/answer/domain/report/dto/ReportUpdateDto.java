@@ -9,6 +9,5 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReportUpdateDto extends BaseReportDto{
 
     private Long reportId;
-    private MultipartFile[] multipartFileList; // 업로드 이미지
 }
 

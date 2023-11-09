@@ -10,6 +10,5 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReportAddDto extends BaseReportDto{
 
     private String email; // 사용자 이메일
-    private MultipartFile[] multipartFileList; // 업로드 이미지
 
 }
