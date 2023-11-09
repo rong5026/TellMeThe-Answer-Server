@@ -65,13 +65,16 @@ public class ReportServiceImpl implements ReportService {
             updateFieldIfNotNull(report::updateDisease, reportUpdateDto.getDisease());
             report.updateLocation(reportUpdateDto.getLatitude(), reportUpdateDto.getLongitude());
 
-            // image link 업데이트
-            updateFieldIfNotNull(report::updateImageLink,  report.getImageLink());
-
             // S3 저장
             MultipartFile[] multipartFileList = reportUpdateDto.getMultipartFileList();
             if (multipartFileList != null) {
                 List<String> imagePathList = s3Service.saveUploadFile(multipartFileList);
+                String firstImagePath = imagePathList.get(0);
+
+                // image link 업데이트
+                List<Image> imageList = report.getImageLink();
+                Image image = imageList.get(0);
+                image.updateImageLink(firstImagePath);
             }
 
             reportRepository.save(report);
