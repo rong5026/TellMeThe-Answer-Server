@@ -143,6 +143,7 @@ public class ReportServiceImpl implements ReportService {
         dto.setPlant(report.getPlant());
         dto.setDisease(report.getDisease());
         dto.setMemberId(report.getMember().getId());
+        dto.setImageLink(report.getImageLink());
         return dto;
     }
 }

@@ -4,6 +4,7 @@ package com.capstone.answer.domain.report.entity;
 import com.capstone.answer.domain.BaseTimeEntity;
 import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,6 +48,7 @@ public class Report extends BaseTimeEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> imageLink = new ArrayList<>();
 

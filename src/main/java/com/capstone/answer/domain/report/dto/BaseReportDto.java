@@ -13,6 +13,5 @@ public class BaseReportDto {
     private float longitude;
     private String plant;
     private String disease;
-    private MultipartFile[] multipartFileList; // 업로드 이미지
 
 }
