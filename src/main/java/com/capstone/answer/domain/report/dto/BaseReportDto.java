@@ -11,7 +11,7 @@ public class BaseReportDto {
     private String content;
     private float latitude;
     private float longitude;
-    private String plant;
+    private String crop;
     private String disease;
 
 }

@@ -61,7 +61,7 @@ public class ReportServiceImpl implements ReportService {
             Report report = optionalReport.get();
             updateFieldIfNotNull(report::updateTitle, reportUpdateDto.getTitle());
             updateFieldIfNotNull(report::updateContent, reportUpdateDto.getContent());
-            updateFieldIfNotNull(report::updatePlant, reportUpdateDto.getPlant());
+            updateFieldIfNotNull(report::updateCrop, reportUpdateDto.getCrop());
             updateFieldIfNotNull(report::updateDisease, reportUpdateDto.getDisease());
             report.updateLocation(reportUpdateDto.getLatitude(), reportUpdateDto.getLongitude());
 
@@ -140,7 +140,7 @@ public class ReportServiceImpl implements ReportService {
         dto.setContent(report.getContent());
         dto.setLatitude(report.getLatitude());
         dto.setLongitude(report.getLongitude());
-        dto.setPlant(report.getPlant());
+        dto.setCrop(report.getCrop());
         dto.setDisease(report.getDisease());
         dto.setMemberId(report.getMember().getId());
         dto.setImageLink(report.getImageLink());

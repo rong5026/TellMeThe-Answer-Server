@@ -39,7 +39,7 @@ public class Report extends BaseTimeEntity {
     private float longitude;
 
     @Column(nullable = false, length = 40)
-    private String plant;
+    private String crop;
 
     @Column(nullable = false, length = 40)
     private String disease;
@@ -60,7 +60,7 @@ public class Report extends BaseTimeEntity {
                 .content(reportAddDto.getContent())
                 .latitude(reportAddDto.getLatitude())
                 .longitude(reportAddDto.getLongitude())
-                .plant(reportAddDto.getPlant())
+                .crop(reportAddDto.getCrop())
                 .disease(reportAddDto.getDisease())
                 .member(member)
                 .build();
@@ -83,8 +83,8 @@ public class Report extends BaseTimeEntity {
     }
 
     // 식물이름 업데이트
-    public void updatePlant(String plant){
-        this.plant = plant;
+    public void updateCrop(String crop){
+        this.crop = crop;
     }
 
     // 병해 업데이트
