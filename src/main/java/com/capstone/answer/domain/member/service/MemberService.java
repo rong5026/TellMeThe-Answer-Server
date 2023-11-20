@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface MemberService {
 
     //회원가입
-    Member signUp(MemberSignUpDto memberSignUpDto);
+    Long signUp(MemberSignUpDto memberSignUpDto);
 
     //로그인
     Optional<Member> login(String email, String password);

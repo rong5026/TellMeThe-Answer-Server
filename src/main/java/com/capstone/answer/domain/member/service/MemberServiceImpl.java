@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sound.midi.MetaMessage;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,12 +23,14 @@ public class MemberServiceImpl implements MemberService{
      * 회원가입
      */
     @Override
-    public Member signUp(MemberSignUpDto memberSignUpDto) {
+    public Long signUp(MemberSignUpDto memberSignUpDto) {
         Member saveMember = memberSignUpDto.entity();
         memberRepository.findByEmail(saveMember.getEmail()).ifPresent(
-                value -> new Exception("이미 존재하는 이메일입니다.")
-        );
-        return memberRepository.save(saveMember);
+                value -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
+        Member member = memberRepository.save(saveMember);
+        return member.getId();
     }
 
     /**

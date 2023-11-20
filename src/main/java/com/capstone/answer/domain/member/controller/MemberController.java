@@ -4,12 +4,20 @@ import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.member.dto.MemberSignUpDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.service.MemberService;
+import com.capstone.answer.global.dto.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Tag(name = "member", description = "회원 API")
@@ -18,13 +26,26 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/member", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class MemberController {
     private final MemberService memberService;
-
+    private final ResponseDto reponseDto;
 
     @Operation(summary = "회원가입", description = "유저정보 저장")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MemberSignUpDto.class))),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
+    })
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.OK)
-    public void signUp(@RequestBody MemberSignUpDto memberSignUpDto){
-        memberService.signUp(memberSignUpDto);
+    public Long signUp(@RequestBody MemberSignUpDto memberSignUpDto){
+        Map<String, Object> response = new HashMap<>();
+
+        Long memberId = memberService.signUp(memberSignUpDto);
+//
+//        if (memberId != null)
+//            return (reponseDto.createResponse())
+//        return memberId;
+        return memberId;
     }
 
     @Operation(summary = "로그인", description = "email, password로 로그인")
