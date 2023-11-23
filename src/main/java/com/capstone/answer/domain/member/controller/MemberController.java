@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 
 @Tag(name = "member", description = "회원 API")
@@ -39,7 +40,6 @@ public class MemberController {
             @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
     })
     @PostMapping("/signup")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Map<String, Object>> signUp(@RequestBody MemberSignUpDto memberSignUpDto){
         Map<String, Object> response = new HashMap<>();
 
@@ -56,9 +56,17 @@ public class MemberController {
 
     @Operation(summary = "로그인", description = "email, password로 로그인")
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
-    public void login(@RequestBody String email, @RequestBody String password){
-        memberService.login(email, password);
+    public ResponseEntity<Map<String, Object>> login(@RequestBody String email, @RequestBody String password){
+        Optional<Member> findedMember =  memberService.login(email, password);
+        Map<String, Object> response = new HashMap<>();
+
+        if (findedMember.isEmpty()) {
+            return (reponseDto.createResponse(false, "로그인 실패.", response));
+        }
+        else {
+            response.put("memberId", findedMember.get().getId());
+            return (reponseDto.createResponse(true, "로그인 성공.", response));
+        }
     }
 
     @Operation(summary = "회원수정", description = "회원 email, password, 위치정보 변경")

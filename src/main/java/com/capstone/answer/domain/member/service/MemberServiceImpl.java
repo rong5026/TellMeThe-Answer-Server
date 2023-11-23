@@ -32,10 +32,10 @@ public class MemberServiceImpl implements MemberService{
         if (existingMember.isPresent()) {
             return Constants.EXIST_MEMBER;
         }
-
-        Member member = memberRepository.save(saveMember);
-        return member.getId();
-
+        else {
+            Member member = memberRepository.save(saveMember);
+            return member.getId();
+        }
     }
 
     /**
@@ -43,7 +43,14 @@ public class MemberServiceImpl implements MemberService{
      */
     @Override
     public Optional<Member> login(String email, String password) {
-        return memberRepository.findByEmailAndPassword(email, password);
+        Optional<Member> findMember = memberRepository.findByEmailAndPassword(email, password);
+
+        if (findMember.isPresent()) {
+            return Optional.empty();
+        }
+        else {
+            return findMember;
+        }
     }
 
     /**
