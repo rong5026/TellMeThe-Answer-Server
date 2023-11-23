@@ -4,7 +4,8 @@ import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.member.dto.MemberSignUpDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.service.MemberService;
-import com.capstone.answer.global.dto.ResponseDto;
+import com.capstone.answer.global.utils.Constants;
+import com.capstone.answer.global.utils.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -14,10 +15,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 @Tag(name = "member", description = "회원 API")
@@ -37,15 +40,18 @@ public class MemberController {
     })
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.OK)
-    public Long signUp(@RequestBody MemberSignUpDto memberSignUpDto){
+    public ResponseEntity<Map<String, Object>> signUp(@RequestBody MemberSignUpDto memberSignUpDto){
         Map<String, Object> response = new HashMap<>();
 
         Long memberId = memberService.signUp(memberSignUpDto);
-//
-//        if (memberId != null)
-//            return (reponseDto.createResponse())
-//        return memberId;
-        return memberId;
+
+        if (Objects.equals(memberId, Constants.EXIST_MEMBER)) {
+            return (reponseDto.createResponse(false, "이미 존재하는 회원입니다.", response));
+        }
+        else {
+            response.put("memberId", memberId);
+            return (reponseDto.createResponse(true, "회원가입 성공하였습니다.", response));
+        }
     }
 
     @Operation(summary = "로그인", description = "email, password로 로그인")

@@ -4,6 +4,8 @@ import com.capstone.answer.domain.member.Member;
 import com.capstone.answer.domain.member.dto.MemberSignUpDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.repository.MemberRepository;
+import com.capstone.answer.global.utils.Constants;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,12 +27,15 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Long signUp(MemberSignUpDto memberSignUpDto) {
         Member saveMember = memberSignUpDto.entity();
-        memberRepository.findByEmail(saveMember.getEmail()).ifPresent(
-                value -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
+        Optional<Member> existingMember = memberRepository.findByEmail(saveMember.getEmail());
+
+        if (existingMember.isPresent()) {
+            return Constants.EXIST_MEMBER;
+        }
+
         Member member = memberRepository.save(saveMember);
         return member.getId();
+
     }
 
     /**
