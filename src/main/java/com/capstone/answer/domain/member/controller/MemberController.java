@@ -51,11 +51,8 @@ public class MemberController {
             @ApiResponse(responseCode = "500", description = "로그인 실패"),
     })
     @PostMapping("/login")
-    public Long login(@RequestBody MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
-        Long memberId = memberService.login(memberSignUpAndLoginDto);
-        if (Objects.equals(memberId, Constants.NOT_LOGINED))
-            return Constants.NOT_LOGINED;
-        return memberId;
+    public Long login(@RequestBody MemberSignUpAndLoginDto request) {
+        return memberService.login(request);
     }
 
     @Operation(summary = "회원수정", description = "회원 email, password, 위치정보 변경")

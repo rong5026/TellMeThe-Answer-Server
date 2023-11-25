@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.sound.midi.MetaMessage;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -37,12 +38,18 @@ public class MemberServiceImpl implements MemberService{
     /**
      * 로그인
      */
-    public Long login(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
-        Optional<Member> member = memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.getEmail(), memberSignUpAndLoginDto.getPassword());
+    public Long login(MemberSignUpAndLoginDto requestDto) {
 
-        if (member.isPresent())
-            return member.get().getId();
-        return Constants.NOT_LOGINED;
+        Member member = memberRepository.findByEmail(requestDto.getEmail()).orElseThrow(
+                ()-> new IllegalArgumentException("가입되지 않은 email입니다.")
+        );
+
+        String password = requestDto.getPassword();
+        if (!(Objects.equals(member.getPassword(), password))) {
+            throw new IllegalArgumentException("잘못된 비밀번호 입니다.");
+        }
+
+        return member.getId();
     }
 
     /**
