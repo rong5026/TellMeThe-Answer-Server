@@ -53,6 +53,10 @@ public class MemberController {
     }
 
     @Operation(summary = "회원수정", description = "회원 email, password, 위치정보 변경")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원수정 성공"),
+            @ApiResponse(responseCode = "500", description = "회원수정 실패"),
+    })
     @PostMapping("/update")
     public void update(@RequestBody MemberUpdateDto memberUpdateDto) throws Exception {
         memberService.update(memberUpdateDto);
