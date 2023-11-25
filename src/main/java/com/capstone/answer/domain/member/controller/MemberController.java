@@ -7,12 +7,14 @@ import com.capstone.answer.domain.member.service.MemberService;
 import com.capstone.answer.global.utils.Constants;
 import com.capstone.answer.global.utils.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,44 +36,25 @@ public class MemberController {
 
     @Operation(summary = "회원가입", description = "유저정보 저장")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MemberSignUpDto.class))),
-            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
-            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
+            @ApiResponse(responseCode = "200", description = "회원가입 성공", content = @Content(schema = @Schema(implementation = MemberSignUpDto.class))),
+            @ApiResponse(responseCode = "400", description = "회원가입 실패"),
     })
     @PostMapping("/signup")
-    public ResponseEntity<Map<String, Object>> signUp(@RequestBody MemberSignUpDto memberSignUpDto){
-        Map<String, Object> response = new HashMap<>();
-
-        Long memberId = memberService.signUp(memberSignUpDto);
-
-        if (Objects.equals(memberId, Constants.EXIST_MEMBER)) {
-            return (reponseDto.createResponse(false, "이미 존재하는 회원입니다.", response));
-        }
-        else {
-            response.put("memberId", memberId);
-            return (reponseDto.createResponse(true, "회원가입 성공하였습니다.", response));
-        }
+    public void signUp(@RequestBody MemberSignUpDto memberSignUpDto){
+        memberService.signUp(memberSignUpDto);
     }
 
     @Operation(summary = "로그인", description = "email, password로 로그인")
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody String email, @RequestBody String password){
-        Optional<Member> findedMember =  memberService.login(email, password);
-        Map<String, Object> response = new HashMap<>();
-
-        if (findedMember.isEmpty()) {
-            return (reponseDto.createResponse(false, "로그인 실패.", response));
-        }
-        else {
-            response.put("memberId", findedMember.get().getId());
-            return (reponseDto.createResponse(true, "로그인 성공.", response));
-        }
+    public Long login(@RequestBody MemberSignUpDto memberSignUpDto) {
+        Long memberId = memberService.login(memberSignUpDto);
+        if (Objects.equals(memberId, Constants.NOT_LOGINED))
+            return Constants.NOT_LOGINED;
+        return memberId;
     }
 
     @Operation(summary = "회원수정", description = "회원 email, password, 위치정보 변경")
     @PostMapping("/update")
-    @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody MemberUpdateDto memberUpdateDto) throws Exception {
         memberService.update(memberUpdateDto);
     }

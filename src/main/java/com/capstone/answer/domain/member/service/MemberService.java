@@ -9,10 +9,10 @@ import java.util.Optional;
 public interface MemberService {
 
     //회원가입
-    Long signUp(MemberSignUpDto memberSignUpDto);
+    Member signUp(MemberSignUpDto memberSignUpDto);
 
     //로그인
-    Optional<Member> login(String email, String password);
+    Long login(MemberSignUpDto memberSignUpDto);
 
     //회원수정
     void update(MemberUpdateDto memberUpdateDto) throws Exception;
