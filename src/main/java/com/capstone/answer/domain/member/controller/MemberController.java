@@ -63,14 +63,21 @@ public class MemberController {
     }
 
     @Operation(summary = "회원삭제", description = "회원 email(id)로 삭제")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원삭제 성공"),
+            @ApiResponse(responseCode = "500", description = "회원삭제 실패"),
+    })
     @DeleteMapping("/{memberId}")
-    @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long memberId){
         memberService.delete(memberId);
     }
 
 
     @Operation(summary = "회원정보 조회", description = "회원 email(id)로 조회")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원조회 성공", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
+            @ApiResponse(responseCode = "500", description = "회원조회 실패", content = @Content),
+    })
     @GetMapping("/{memberId}")
     @ResponseStatus(HttpStatus.OK)
     public MemberInfoDto getInfo(@PathVariable Long memberId) throws Exception {

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.sound.midi.MetaMessage;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -74,10 +75,9 @@ public class MemberServiceImpl implements MemberService{
      */
     @Override
     public void delete(Long memberId) {
-        memberRepository.findById(memberId).ifPresentOrElse(
-                deleteMember -> memberRepository.delete(deleteMember),
-                () -> new Exception("존재하지 않는 회원입니다.")
-        );
+        Member memberToDelete = memberRepository.findById(memberId)
+                        .orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+        memberRepository.delete(memberToDelete);
     }
 
     /**
