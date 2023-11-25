@@ -32,7 +32,7 @@ public class MemberController {
     @Operation(summary = "회원가입", description = "유저정보 저장" )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "회원가입 성공", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
-            @ApiResponse(responseCode = "500", description = "회원가입 실패"),
+            @ApiResponse(responseCode = "500", description = "회원가입 실패", content = @Content),
     })
     @PostMapping("/signup")
     public ResponseEntity<BaseResponse> signUp(@RequestBody MemberSignUpAndLoginDto request) throws Exception {
