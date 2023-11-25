@@ -3,6 +3,7 @@ package com.capstone.answer.domain.member.controller;
 import com.capstone.answer.domain.member.dto.MemberInfoDto;
 import com.capstone.answer.domain.member.dto.MemberSignUpAndLoginDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
+import com.capstone.answer.domain.member.dto.Response.LoginResponse;
 import com.capstone.answer.domain.member.service.MemberService;
 import com.capstone.answer.global.dto.BaseResponse;
 import com.capstone.answer.global.dto.ResponseExample;
@@ -44,7 +45,11 @@ public class MemberController {
         return ResponseEntity.ok(new BaseResponse(true," 회원가입 성공"));
     }
 
-    @Operation(summary = "로그인", description = "email, password로 로그인")
+    @Operation(summary = "로그인", description = "email, password로 로그인 후 memberId 리턴")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "로그인 성공", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
+            @ApiResponse(responseCode = "500", description = "로그인 실패"),
+    })
     @PostMapping("/login")
     public Long login(@RequestBody MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
         Long memberId = memberService.login(memberSignUpAndLoginDto);

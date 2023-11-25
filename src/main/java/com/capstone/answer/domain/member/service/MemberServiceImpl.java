@@ -34,6 +34,9 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.save(requestDto.toEntity());
     }
 
+    /**
+     * 로그인
+     */
     public Long login(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
         Optional<Member> member = memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.getEmail(), memberSignUpAndLoginDto.getPassword());
 
