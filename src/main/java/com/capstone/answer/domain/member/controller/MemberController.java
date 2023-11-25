@@ -6,8 +6,6 @@ import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.dto.Response.LoginResponse;
 import com.capstone.answer.domain.member.service.MemberService;
 import com.capstone.answer.global.dto.BaseResponse;
-import com.capstone.answer.global.dto.ResponseExample;
-import com.capstone.answer.global.utils.Constants;
 import com.capstone.answer.global.dto.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,14 +14,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 
 @Tag(name = "member", description = "회원 API")
@@ -51,8 +46,10 @@ public class MemberController {
             @ApiResponse(responseCode = "500", description = "로그인 실패"),
     })
     @PostMapping("/login")
-    public Long login(@RequestBody MemberSignUpAndLoginDto request) {
-        return memberService.login(request);
+    public ResponseEntity<LoginResponse> login(@RequestBody MemberSignUpAndLoginDto request) {
+        Long memberId = memberService.login(request);
+        LoginResponse response = new LoginResponse(true,"로그인 성공", memberId);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "회원수정", description = "회원 email, password, 위치정보 변경")
