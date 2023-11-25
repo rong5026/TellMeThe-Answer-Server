@@ -26,16 +26,16 @@ public class MemberServiceImpl implements MemberService{
      * 회원가입
      */
     @Override
-    public Member signUp(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
-        Member saveMember = memberSignUpAndLoginDto.entity();
-        memberRepository.findByEmail(saveMember.getEmail()).ifPresent(
-                value -> new Exception("이미 존재하는 이메일입니다.")
-        );
-        return memberRepository.save(saveMember);
+    public void signUp(MemberSignUpAndLoginDto requestDto) throws Exception {
+
+        if (memberRepository.findByEmail(requestDto.getEmail()).isPresent()) {
+            throw  new Exception("이미 존재하는 이메일입니다.");
+        }
+        memberRepository.save(requestDto.toEntity());
     }
 
     public Long login(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
-        Optional<Member> member = memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.email(), memberSignUpAndLoginDto.password());
+        Optional<Member> member = memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.getEmail(), memberSignUpAndLoginDto.getPassword());
 
         if (member.isPresent())
             return member.get().getId();

@@ -1,4 +1,4 @@
-package com.capstone.answer.global.utils;
+package com.capstone.answer.global.dto;
 
 
 import org.springframework.http.ResponseEntity;
