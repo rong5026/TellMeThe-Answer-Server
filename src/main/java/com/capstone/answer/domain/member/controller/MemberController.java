@@ -1,8 +1,8 @@
 package com.capstone.answer.domain.member.controller;
 
 import com.capstone.answer.domain.member.Member;
+import com.capstone.answer.domain.member.dto.MemberInfoDto;
 import com.capstone.answer.domain.member.dto.MemberSignUpAndLoginDto;
-import com.capstone.answer.domain.member.dto.MemberSignUpDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.service.MemberService;
 import com.capstone.answer.global.utils.Constants;
@@ -37,7 +37,7 @@ public class MemberController {
 
     @Operation(summary = "회원가입", description = "유저정보 저장")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "회원가입 성공", content = @Content(schema = @Schema(implementation = MemberSignUpDto.class))),
+            @ApiResponse(responseCode = "200", description = "회원가입 성공", content = @Content(schema = @Schema(implementation = MemberSignUpAndLoginDto.class))),
             @ApiResponse(responseCode = "400", description = "회원가입 실패"),
     })
     @PostMapping("/signup")
@@ -71,7 +71,7 @@ public class MemberController {
     @Operation(summary = "회원정보 조회", description = "회원 email(id)로 조회")
     @GetMapping("/{memberId}")
     @ResponseStatus(HttpStatus.OK)
-    public Member getInfo(@PathVariable Long memberId) throws Exception {
+    public MemberInfoDto getInfo(@PathVariable Long memberId) throws Exception {
         return memberService.getInfo(memberId);
     }
 }
