@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void update(MemberUpdateDto memberUpdateDto) throws Exception{
         memberUpdateDto.email().orElseThrow(()-> new Exception("이메일이 없습니다.")); // 인자에 이메일 없음
-        Member member = memberRepository.findByEmail(memberUpdateDto.email().get()).orElseThrow(()-> new Exception("존재하지 않는 회원입니다."));
+        Member member = memberRepository.findByEmail(memberUpdateDto.email().get()).orElseThrow(()-> new NoSuchElementException("존재하지 않는 회원입니다."));
         memberUpdateDto.password().ifPresent(password -> {
             if (!password.trim().isEmpty()) {
                 member.updatePassword(password);

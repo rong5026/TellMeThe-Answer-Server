@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -33,7 +34,9 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void add(ReportAddDto reportAddDto) throws IOException {
 
-        Member member = memberRepository.findReportByEmail(reportAddDto.getEmail());
+        Member member = memberRepository.findMemberById(reportAddDto.getMemberId())
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+
         Report inputReport = Report.createReport(reportAddDto, member);
 
         MultipartFile[] multipartFileList = reportAddDto.getMultipartFileList();

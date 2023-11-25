@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class ReportAddDto extends BaseReportDto{
 
-    private String email; // 사용자 이메일
+    private Long memberId; // 사용자 고유ID
     private MultipartFile[] multipartFileList; // 업로드 이미지
 
 }

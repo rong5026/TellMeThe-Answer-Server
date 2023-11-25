@@ -31,8 +31,7 @@ public class ReportController {
         Map<String, Object> response = new HashMap<>();
         reportService.add(reportAddDto);
 
-        String result = "df";
-        if(result != null) {
+        if(true) {
             response.put("result", true);
             response.put("message", "Registeration Success");
             return ResponseEntity.ok(response);
