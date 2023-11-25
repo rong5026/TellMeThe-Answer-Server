@@ -12,8 +12,7 @@ public interface MemberService {
     //회원가입
     Member signUp(MemberSignUpAndLoginDto memberSignUpAndLoginDto);
 
-    //로그인
-    Optional<Member> login(MemberSignUpAndLoginDto memberSignUpAndLoginDto);
+    Long login(MemberSignUpAndLoginDto memberSignUpAndLoginDto);
 
     //회원수정
     void update(MemberUpdateDto memberUpdateDto) throws Exception;

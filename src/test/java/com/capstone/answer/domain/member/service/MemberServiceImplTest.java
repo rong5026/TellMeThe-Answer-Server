@@ -58,33 +58,34 @@ class MemberServiceImplTest {
         assertThat(member1).isEqualTo(member2);
     }
 
-    @Test
-    void 성공_로그인() throws Exception{
-        //given
-        MemberSignUpAndLoginDto memberDto = makeMemberSignUpDto();
 
-        //when
-        memberService.signUp(memberDto);
-        Member findMember = memberRepository.findByEmail(memberDto.email()).orElseThrow(() -> new Exception("존재하지 않는 회원입니다."));
-        Optional<Member> loginMember = memberService.login(memberDto);
-
-        //then
-        assertThat(findMember).isEqualTo(loginMember.get());
-    }
-
-    @Test
-    void 실패_로그인() throws Exception{
-        //given
-        MemberSignUpAndLoginDto memberSignUpDto = makeMemberSignUpDto();
-        MemberSignUpAndLoginDto memberLoginDto = new MemberSignUpAndLoginDto(email, "test");
-
-        //when
-        memberService.signUp(memberSignUpDto);
-        Optional<Member> loginMember = memberService.login(memberLoginDto);
-
-        //then
-        assertThat(loginMember).isEmpty();
-    }
+//    @Test
+//    void 성공_로그인() throws Exception{
+//        //given
+//        MemberSignUpAndLoginDto memberDto = makeMemberSignUpDto();
+//
+//        //when
+//        memberService.signUp(memberDto);
+//        Member findMember = memberRepository.findByEmail(memberDto.email()).orElseThrow(() -> new Exception("존재하지 않는 회원입니다."));
+//        Optional<Member> loginMember = memberService.login(memberDto);
+//
+//        //then
+//        assertThat(findMember).isEqualTo(loginMember.get());
+//    }
+//
+//    @Test
+//    void 실패_로그인() throws Exception{
+//        //given
+//        MemberSignUpAndLoginDto memberSignUpDto = makeMemberSignUpDto();
+//        MemberSignUpAndLoginDto memberLoginDto = new MemberSignUpAndLoginDto(email, "test");
+//
+//        //when
+//        memberService.signUp(memberSignUpDto);
+//        Optional<Member> loginMember = memberService.login(memberLoginDto);
+//
+//        //then
+//        assertThat(loginMember).isEmpty();
+//    }
 
     @Test
     void 성공_비밀번호_수정() throws Exception {

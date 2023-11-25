@@ -11,3 +11,4 @@ public record MemberSignUpAndLoginDto(String email, String password){
                 .build();
     }
 }
+

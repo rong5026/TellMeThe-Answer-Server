@@ -1,15 +1,15 @@
 package com.capstone.answer.domain.report.dto;
 
-import com.capstone.answer.domain.report.entity.Report;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-public class ReportAddDto extends BaseReportDto{
+public class ReportUpdateDto extends BaseReportDto{
 
-    private String email; // 사용자 이메일
+    private Long reportId;
     private MultipartFile[] multipartFileList; // 업로드 이미지
 
 }
+

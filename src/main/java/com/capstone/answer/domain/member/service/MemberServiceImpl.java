@@ -5,10 +5,14 @@ import com.capstone.answer.domain.member.dto.MemberInfoDto;
 import com.capstone.answer.domain.member.dto.MemberSignUpAndLoginDto;
 import com.capstone.answer.domain.member.dto.MemberUpdateDto;
 import com.capstone.answer.domain.member.repository.MemberRepository;
+import com.capstone.answer.domain.report.entity.Report;
+import com.capstone.answer.global.utils.Constants;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.sound.midi.MetaMessage;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,12 +34,12 @@ public class MemberServiceImpl implements MemberService{
         return memberRepository.save(saveMember);
     }
 
-    /**
-     * 로그인
-     */
-    @Override
-    public Optional<Member> login(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
-        return memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.email(), memberSignUpAndLoginDto.password());
+    public Long login(MemberSignUpAndLoginDto memberSignUpAndLoginDto) {
+        Optional<Member> member = memberRepository.findByEmailAndPassword(memberSignUpAndLoginDto.email(), memberSignUpAndLoginDto.password());
+
+        if (member.isPresent())
+            return member.get().getId();
+        return Constants.NOT_LOGINED;
     }
 
     /**

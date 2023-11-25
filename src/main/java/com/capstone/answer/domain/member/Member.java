@@ -35,6 +35,7 @@ public class Member extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Report> reports = new ArrayList<>();
+
     // == 비밀번호, 위도, 경도 업데이트 == //
     public void updatePassword(String password) {
         this.password = password;

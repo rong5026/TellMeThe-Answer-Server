@@ -2,14 +2,15 @@ package com.capstone.answer.domain.report.entity;
 
 
 import com.capstone.answer.domain.BaseTimeEntity;
-import com.capstone.answer.domain.image.Image;
 import com.capstone.answer.domain.member.Member;
+import com.capstone.answer.domain.report.dto.ReportAddDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,7 +23,7 @@ public class Report extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "report_id", nullable = false)
-    private Long id;
+    private Long reportId;
 
     @Column(nullable = false, length = 40)
     private String title;
@@ -38,7 +39,7 @@ public class Report extends BaseTimeEntity {
     private float longitude;
 
     @Column(nullable = false, length = 40)
-    private String plant;
+    private String crop;
 
     @Column(nullable = false, length = 40)
     private String disease;
@@ -47,51 +48,50 @@ public class Report extends BaseTimeEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> imageLink = new ArrayList<>();
 
-
     // 신고 생성
-    public static Report createReport(Report report, Member member) {
+    public static Report createReport(ReportAddDto reportAddDto, Member member) {
 
         return Report.builder()
-                .title(report.title)
-                .content(report.content)
-                .latitude(report.latitude)
-                .longitude(report.longitude)
-                .plant(report.plant)
-                .disease(report.disease)
+                .title(reportAddDto.getTitle())
+                .content(reportAddDto.getContent())
+                .latitude(reportAddDto.getLatitude())
+                .longitude(reportAddDto.getLongitude())
+                .crop(reportAddDto.getCrop())
+                .disease(reportAddDto.getDisease())
                 .member(member)
                 .build();
     }
 
-//    public void update(String title, String content) {
-//        this.title = title;
-//        this.content = content;
-//    }
+    // 제목 업데이트
+    public void updateTitle(String title){
+        this.title = title;
+    }
 
-//
-//    // 제목 업데이트
-//    public void updateTitle(String title){
-//        this.title = title;
-//    }
-//    // 위치 업데이트
-//    public void updateLatitude(float latitude){
-//        this.latitude = latitude;
-//    }
-//
-//    public void updateLongitude(float longitude){this.longitude = longitude;}
-//    // 본문 업데이트
-//    public void updateContent(String content){
-//        this.content = content;
-//    }
-//    // 식물이름 업데이트
-//    public void updatePlant(String plant){
-//        this.plant = plant;
-//    }
-//    // 병해 업데이트
-//    public void updateDisease(String disease){
-//        this.disease = disease;
-//    }
+    // 본문 업데이트
+    public void updateContent(String content){
+        this.content = content;
+    }
 
+    // 위치 업데이트
+    public void updateLocation(float latitude, float longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    // 식물이름 업데이트
+    public void updateCrop(String crop){
+        this.crop = crop;
+    }
+
+    // 병해 업데이트
+    public void updateDisease(String disease){
+        this.disease = disease;
+    }
+
+    // 이미지 업데이트
+    public void updateImageLink(List<Image> imageLink) { this.imageLink = imageLink; }
 }
