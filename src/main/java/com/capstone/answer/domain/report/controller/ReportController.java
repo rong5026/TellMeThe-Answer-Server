@@ -111,18 +111,4 @@ public class ReportController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse(false, "신고내역 조회 실패."));
         }
     }
-
-    // 응답 메서드
-    private ResponseEntity<Map<String, Object>> createResponse(boolean result, String successMessage, String failMessage) {
-        Map<String, Object> response = new HashMap<>();
-        if (result) {
-            response.put("result", true);
-            response.put("message", successMessage);
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("result", false);
-            response.put("message", failMessage);
-            return ResponseEntity.badRequest().body(response);
-        }
-    }
 }
