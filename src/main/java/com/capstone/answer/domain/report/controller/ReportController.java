@@ -4,6 +4,7 @@ package com.capstone.answer.domain.report.controller;
 import com.capstone.answer.domain.report.dto.ReportAddDto;
 import com.capstone.answer.domain.report.dto.ReportListDto;
 import com.capstone.answer.domain.report.dto.ReportUpdateDto;
+import com.capstone.answer.domain.report.dto.Response.ReportListResponse;
 import com.capstone.answer.domain.report.service.Report.ReportService;
 import com.capstone.answer.global.dto.BaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -81,23 +82,17 @@ public class ReportController {
 
     @Operation(summary = "유저 신고내역", description = "유저ID로 신고내역 리스트 조회" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "신고내역 조회 성공", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
-            @ApiResponse(responseCode = "500", description = "신고내역 조회 실패", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
+            @ApiResponse(responseCode = "200", description = "신고내역 조회 성공", content = @Content(schema = @Schema(implementation = ReportListResponse.class))),
+            @ApiResponse(responseCode = "500", description = "신고내역 조회 실패", content = @Content(schema = @Schema(implementation = ReportListResponse.class))),
     })
     @GetMapping("/list/{memberId}")
-    public ResponseEntity<Map<String, Object>> getUserReport(@PathVariable("memberId") Long memberId) {
-        Map<String, Object> response = new HashMap<>();
-        List<ReportListDto> reports = reportService.getReportByUser(memberId);
+    public ResponseEntity<Object> getUserReport(@PathVariable("memberId") Long memberId) {
 
-        if(reports != null) {
-            response.put("result", true);
-            response.put("message", "Check User List Success");
-            response.put("contents", reports);
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("result", false);
-            response.put("message", "Check User List Fail");
-            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+        try {
+            List<ReportListDto> reports = reportService.getReportByUser(memberId);
+            return ResponseEntity.ok(new ReportListResponse(true, "신고내역 조회 성공.", reports));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ReportListResponse(false, "신고삭제 실패.", null));
         }
     }
 
