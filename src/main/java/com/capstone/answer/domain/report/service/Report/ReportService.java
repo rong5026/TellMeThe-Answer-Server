@@ -14,10 +14,10 @@ public interface ReportService {
     void add(ReportAddDto reportAddDto) throws IOException;
 
     // 신고 수정
-    boolean update(ReportUpdateDto reportUpdateDto) throws IOException;
+    void update(ReportUpdateDto reportUpdateDto) throws IOException;
 
     // 신고 삭제
-    boolean delete(Long reportId);
+    void delete(Long reportId);
 
     // 유저에 대한 신고내역 조회
     List<ReportListDto> getReportByUser(Long memberId);

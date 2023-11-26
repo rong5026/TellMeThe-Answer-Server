@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/member", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class MemberController {
     private final MemberService memberService;
-    private final ResponseDto reponseDto;
 
     @Operation(summary = "회원가입", description = "유저정보 저장" )
     @ApiResponses(value = {
