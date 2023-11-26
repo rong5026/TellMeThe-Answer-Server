@@ -83,7 +83,7 @@ public class ReportController {
     @Operation(summary = "유저 신고내역", description = "유저ID로 신고내역 리스트 조회" )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "신고내역 조회 성공", content = @Content(schema = @Schema(implementation = ReportListResponse.class))),
-            @ApiResponse(responseCode = "500", description = "신고내역 조회 실패", content = @Content(schema = @Schema(implementation = ReportListResponse.class))),
+            @ApiResponse(responseCode = "500", description = "신고내역 조회 실패", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
     })
     @GetMapping("/list/{memberId}")
     public ResponseEntity<Object> getUserReport(@PathVariable("memberId") Long memberId) {
@@ -92,28 +92,23 @@ public class ReportController {
             List<ReportListDto> reports = reportService.getReportByUser(memberId);
             return ResponseEntity.ok(new ReportListResponse(true, "신고내역 조회 성공.", reports));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ReportListResponse(false, "신고삭제 실패.", null));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse(false, "신고내역 조회 실패."));
         }
     }
 
-    /**
-     * 모든 신고 리스트
-     */
+    @Operation(summary = "모든 신고내역", description = "전체 신고리스트 조회" )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "신고내역 조회 성공", content = @Content(schema = @Schema(implementation = ReportListResponse.class))),
+            @ApiResponse(responseCode = "500", description = "신고내역 조회 실패", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
+    })
     @GetMapping("/list/all")
-    public ResponseEntity<Map<String, Object>> getAllReport()
+    public ResponseEntity<Object> getAllReport()
     {
-        Map<String, Object> response = new HashMap<>();
-        List<ReportListDto> reports = reportService.getAllReport();
-
-        if (reports != null) {
-            response.put("result", true);
-            response.put("message", "Check User List Success");
-            response.put("contents", reports);
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("result", false);
-            response.put("message", "Check User List Fail");
-            return ResponseEntity.badRequest().body(response); // 400 Bad Request
+        try {
+            List<ReportListDto> reports = reportService.getAllReport();
+            return ResponseEntity.ok(new ReportListResponse(true, "신고내역 조회 성공.", reports));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse(false, "신고내역 조회 실패."));
         }
     }
 
