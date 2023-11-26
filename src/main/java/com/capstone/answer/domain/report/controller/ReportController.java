@@ -79,9 +79,11 @@ public class ReportController {
         }
     }
 
-    /**
-     * 유저에 대한 신고내역
-     */
+    @Operation(summary = "유저 신고내역", description = "유저ID로 신고내역 리스트 조회" )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "신고내역 조회 성공", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
+            @ApiResponse(responseCode = "500", description = "신고내역 조회 실패", content = @Content(schema = @Schema(implementation = BaseResponse.class))),
+    })
     @GetMapping("/list/{memberId}")
     public ResponseEntity<Map<String, Object>> getUserReport(@PathVariable("memberId") Long memberId) {
         Map<String, Object> response = new HashMap<>();
