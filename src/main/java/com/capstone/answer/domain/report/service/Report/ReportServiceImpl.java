@@ -7,6 +7,7 @@ import com.capstone.answer.domain.report.entity.Image;
 import com.capstone.answer.domain.report.entity.Report;
 import com.capstone.answer.domain.report.repository.ImageRepository;
 import com.capstone.answer.domain.report.repository.ReportRepository;
+import com.capstone.answer.domain.report.utils.Utils;
 import com.capstone.answer.domain.s3.service.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,10 +61,10 @@ public class ReportServiceImpl implements ReportService {
         Report report = reportRepository.findById(reportUpdateDto.getReportId())
                 .orElseThrow(()-> new NoSuchElementException("존재하지 않은 신고내역입니다."));
 
-        updateFieldIfNotNull(report::updateTitle, reportUpdateDto.getTitle());
-        updateFieldIfNotNull(report::updateContent, reportUpdateDto.getContent());
-        updateFieldIfNotNull(report::updateCrop, reportUpdateDto.getCrop());
-        updateFieldIfNotNull(report::updateDisease, reportUpdateDto.getDisease());
+        Optional.ofNullable(reportUpdateDto.getTitle()).ifPresent(report::updateTitle);
+        Optional.ofNullable(reportUpdateDto.getContent()).ifPresent(report::updateContent);
+        Optional.ofNullable(reportUpdateDto.getCrop()).ifPresent(report::updateCrop);
+        Optional.ofNullable(reportUpdateDto.getDisease()).ifPresent(report::updateTitle);
         report.updateLocation(reportUpdateDto.getLatitude(), reportUpdateDto.getLongitude());
 
         // S3 저장
@@ -99,10 +99,13 @@ public class ReportServiceImpl implements ReportService {
      */
     @Override
     public List<ReportListDto> getReportByUser(Long memberId) {
-        List<Report> reports =reportRepository.getReportsByMemberId(memberId);
+        List<Report> reports =reportRepository.getReportsByMemberId(memberId) ;
 
+        if (reports.isEmpty()) {
+            throw new NoSuchElementException("유저에 대한 신고내역이 없습니다.");
+        }
         List<ReportListDto> reportList = reports.stream()
-                .map(this::convertToReportListAll)
+                .map(Utils::convertToReportListAll)
                 .collect(Collectors.toList());
 
         return reportList;
@@ -114,32 +117,15 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ReportListDto> getAllReport() {
         List<Report> reports = reportRepository.findAll();
+
+        if (reports.isEmpty()) {
+            throw new NoSuchElementException("신고내역이 없습니다.");
+        }
         List<ReportListDto> reportList = reports.stream()
-                .map(this::convertToReportListAll)
+                .map(Utils::convertToReportListAll)
                 .toList();
 
         return reportList;
     }
 
-    // 값이 있는지 확인
-    private <T> void updateFieldIfNotNull(Consumer<T> updateMethod, T value) {
-        if (value != null) {
-            updateMethod.accept(value);
-        }
-    }
-
-    // ReportAllList 할 때 DTO로 전환
-    private ReportListDto convertToReportListAll(Report report) {
-        ReportListDto dto = new ReportListDto();
-        dto.setReportId(report.getReportId());
-        dto.setTitle(report.getTitle());
-        dto.setContent(report.getContent());
-        dto.setLatitude(report.getLatitude());
-        dto.setLongitude(report.getLongitude());
-        dto.setCrop(report.getCrop());
-        dto.setDisease(report.getDisease());
-        dto.setMemberId(report.getMember().getId());
-        dto.setImageLink(report.getImageLink());
-        return dto;
-    }
 }
