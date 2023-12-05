@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface MemberService {
 
     //회원가입
-    void signUp(MemberSignUpAndLoginDto requestDto) throws Exception;
+    void signUp(MemberSignUpAndLoginDto requestDto);
 
     Long login(MemberSignUpAndLoginDto memberSignUpAndLoginDto);
 

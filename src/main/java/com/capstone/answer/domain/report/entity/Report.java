@@ -93,5 +93,7 @@ public class Report extends BaseTimeEntity {
     }
 
     // 이미지 업데이트
-    public void updateImageLink(List<Image> imageLink) { this.imageLink = imageLink; }
+    public void updateImageLink(List<Image> imageLink) {
+        this.imageLink = imageLink;
+    }
 }

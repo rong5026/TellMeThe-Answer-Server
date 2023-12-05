@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
-
     List<Report> getReportsByMemberId(Long memberId);
 }
 

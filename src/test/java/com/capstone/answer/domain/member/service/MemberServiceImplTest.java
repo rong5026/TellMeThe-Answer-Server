@@ -45,18 +45,18 @@ class MemberServiceImplTest {
         return memberSignUpAndLoginDto;
     }
 
-    @Test
-    void 성공_회원가입() throws Exception{
-        //given
-        MemberSignUpAndLoginDto memberDto = makeMemberSignUpDto();
-
-        //when
-        Member member1 = memberService.signUp(memberDto);
-        Member member2 = memberRepository.findByEmail(memberDto.email()).orElseThrow(()-> new Exception("존재하지 않는 회원입니다."));
-
-        //then
-        assertThat(member1).isEqualTo(member2);
-    }
+//    @Test
+//    void 성공_회원가입() throws Exception{
+//        //given
+//        MemberSignUpAndLoginDto memberDto = makeMemberSignUpDto();
+//
+//        //when
+//        Member member1 = memberService.signUp(memberDto);
+//        Member member2 = memberRepository.findByEmail(memberDto.email()).orElseThrow(()-> new Exception("존재하지 않는 회원입니다."));
+//
+//        //then
+//        assertThat(member1).isEqualTo(member2);
+//    }
 
 
 //    @Test

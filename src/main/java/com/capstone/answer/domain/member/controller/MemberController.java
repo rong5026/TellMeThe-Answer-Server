@@ -20,7 +20,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @Tag(name = "member", description = "회원 API")
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class MemberController {
             @ApiResponse(responseCode = "500", description = "회원가입 실패", content = @Content),
     })
     @PostMapping("/signup")
-    public ResponseEntity<BaseResponse> signUp(@RequestBody MemberSignUpAndLoginDto request) throws Exception {
+    public ResponseEntity<BaseResponse> signUp(@RequestBody MemberSignUpAndLoginDto request) {
         memberService.signUp(request);
         return ResponseEntity.ok(new BaseResponse(true," 회원가입 성공"));
     }
@@ -70,7 +69,6 @@ public class MemberController {
     public void delete(@PathVariable Long memberId){
         memberService.delete(memberId);
     }
-
 
     @Operation(summary = "회원정보 조회", description = "회원 email(id)로 조회")
     @ApiResponses(value = {

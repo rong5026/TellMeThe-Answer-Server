@@ -19,6 +19,7 @@ public class Utils {
         dto.setDisease(report.getDisease());
         dto.setMemberId(report.getMember().getId());
         dto.setImageLink(report.getImageLink());
+        dto.setCreateDate(report.getCreateDate());
         return dto;
     }
 

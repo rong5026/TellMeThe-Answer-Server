@@ -28,10 +28,10 @@ public class MemberServiceImpl implements MemberService{
      * 회원가입
      */
     @Override
-    public void signUp(MemberSignUpAndLoginDto requestDto) throws Exception {
+    public void signUp(MemberSignUpAndLoginDto requestDto) {
 
         if (memberRepository.findByEmail(requestDto.getEmail()).isPresent()) {
-            throw  new Exception("이미 존재하는 이메일입니다.");
+            throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
         }
         memberRepository.save(requestDto.toEntity());
     }

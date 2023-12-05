@@ -121,11 +121,10 @@ public class ReportServiceImpl implements ReportService {
         if (reports.isEmpty()) {
             throw new NoSuchElementException("신고내역이 없습니다.");
         }
-        List<ReportListDto> reportList = reports.stream()
+
+        return reports.stream()
                 .map(Utils::convertToReportListAll)
                 .toList();
-
-        return reportList;
     }
 
 }
