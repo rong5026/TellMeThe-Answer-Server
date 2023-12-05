@@ -20,7 +20,7 @@ public class ReportListDto extends BaseReportDto{
     @Schema(type = "List<Image>" ,description = "Image객체에 대한 리스트")
     private List<Image> imageLink;
     @Schema(type = "LocalDateTime" , description = "신고시간")
-    @JsonFormat(pattern = "yyyy년 M월 d일 H시 m분")
+    @JsonFormat(pattern = "yyyy년 M월d일")
     private LocalDateTime createDate;
 }
 
