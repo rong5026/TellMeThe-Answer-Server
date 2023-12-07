@@ -23,11 +23,4 @@ public class Utils {
         return dto;
     }
 
-    // 값이 있는지 확인
-    public static <T> void updateFieldIfNotNull(Consumer<T> updateMethod, T value) {
-        if (value != null) {
-            updateMethod.accept(value);
-        }
-    }
-
 }

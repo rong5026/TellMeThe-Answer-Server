@@ -44,6 +44,9 @@ public class Report extends BaseTimeEntity {
     @Column(nullable = false, length = 40)
     private String disease;
 
+    @Column(nullable = false, length = 40)
+    private String location;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -63,6 +66,7 @@ public class Report extends BaseTimeEntity {
                 .crop(reportAddDto.getCrop())
                 .disease(reportAddDto.getDisease())
                 .member(member)
+                .location(reportAddDto.getLocation())
                 .build();
     }
 

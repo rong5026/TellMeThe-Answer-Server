@@ -64,7 +64,7 @@ public class ReportServiceImpl implements ReportService {
         Optional.ofNullable(reportUpdateDto.getTitle()).ifPresent(report::updateTitle);
         Optional.ofNullable(reportUpdateDto.getContent()).ifPresent(report::updateContent);
         Optional.ofNullable(reportUpdateDto.getCrop()).ifPresent(report::updateCrop);
-        Optional.ofNullable(reportUpdateDto.getDisease()).ifPresent(report::updateTitle);
+        Optional.ofNullable(reportUpdateDto.getDisease()).ifPresent(report::updateDisease);
         report.updateLocation(reportUpdateDto.getLatitude(), reportUpdateDto.getLongitude());
 
         // S3 저장

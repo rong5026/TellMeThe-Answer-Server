@@ -20,5 +20,8 @@ public class BaseReportDto {
     private String crop;
     @Schema(type = "string" ,description = "병해명", example = "토마토곰팡이병")
     private String disease;
+    @Schema(type = "string" ,description = "지역", example = "서울시 광진구")
+    private String location;
+
 
 }
