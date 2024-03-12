@@ -76,147 +76,91 @@
 ## ⚙️ 프로젝트 주요 기능
 
 ### 1. 🐛 병해 판별
-### 2. 🗺️ 병해 현황 파악
-### 3. 📢 병해 신고
+- 판별하고자 하는 작물을 선택 후 병해에 대한 정보를 얻을 수 있습니다.
+- 이미지를 업로드하고 병해가 발생한 부분만을 업로드 합니다.
+- 병해 결과로 병해가 발생한 부분과 병해명을 확인할 수 있습니다.
+<div align="center">
+
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/9c2d59c2-d064-4d44-9d5c-b8074640b865"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/54961c76-c0ee-44d6-8ad7-28a46746afeb"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/46943e1f-9be9-4b47-b9eb-6c4f813d40b7"  width="100%"> |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                              병해판별                                                                             |                                                            병해 간략 정보                                                            |                                                            이미지 업로드                                                            |
+
+</div>
+
+<div align="center">
+
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/209b964f-4003-4ae7-bc73-a03b6900c84e"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/7403561a-0e2b-45b7-9109-ea64d32f1194"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/ba901ae3-4759-4d32-979e-824383040ede"  width="100%"> |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                                            이미지 자르기                                                            |                                                             병해 진단                                                              |                                                             병해 결과                                                             |
+
+</div>
+
+### 2. 📢 병해 신고
+- 병해 판단 결과로 병해 신고 기능을 이용할 수 있습니다.
+- 이미지, 제목, 글 정보를 담아 신고할 수 있습니다.
+- 위치 정보를 마커를 통해 움직이며 설정할 수 있습니다.
+<div align="center">
+
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/250045da-3f6d-4200-a989-ce4aecd15375"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/753024c2-384f-4897-aa4f-5170b2e91205"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/1b2a5120-1ad4-4c30-bff6-8f97b5c0525c"  width="100%"> |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                                             신고하기                                                              |                                                         현재 위치 및 위치 검색                                                          |                                                           도로명 주소 검색                                                           |
+
+</div>
+<div align="center">
+
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/96bd20b9-78ae-4e24-ba4b-a8dbde9bd711"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/43e3ebeb-3f00-4ad3-b95e-231bf9a16139"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/0bd09edc-a6fd-4831-b957-144fb775da26"  width="100%"> |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                                           마커로 위치 설정                                                           |                                                            마커로 위치 설정                                                             |                                                             신고 완료                                                             |
+
+</div>
+
+### 3. 🗺️ 병해 현황 파악
+- 다른 사용자들의 신고 내역을 지도를 통해 확인할 수 있습니다. 지도 마커를 통해 신고 내역 위치를 확인하고 신고 병해에 대한 정보를 얻을 수 있습니다. 
+- 마커의 색상에 따라서 작물의 종류를 파악할 수 있으며, 또한 신고 내역에 대한 상세정보를 확인할 수 있습니다.
+<div align="center">
+
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/d6ba0b71-2e73-445a-bf89-43abb8adc0f3"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/b482ca2a-d24b-468d-af0c-cc4a30449dcd"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/4cde9b38-5775-46ca-a337-ea84bcf32b5c"  width="100%"> |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                                           현황 파악 지도                                                            |                                                            신고 상세내역                                                             |                                                             신고 상세내역                                                           |
+
+</div>
+
 ### 4. 📗 병해 도감
+- AI 모델로 판별할 수 없는 많은 병해들을 농민이 직접 병해의 대표 이미지를 보면서 비교하고 판단할 수 있도록 구현하였습니다.
+- 각 병해명과 함께 나와 있는 이미지를 클릭하면 해당 병해의 방제법을 포함한 상세 정보를 확인할 수 있습니다.
+<div align="center">
+
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/b35db91e-4d26-46da-9893-0eba457b0211"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/27aaf932-47ca-42bd-932c-bb5f7b692d19"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/4fa5f96f-e7d8-427f-8db7-aea5a218a285"  width="100%"> |
+|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                                             병해 도감                                                             |                                                            병해 도감 1                                                             |                                                            병해 도감 2                                                            |
+
+</div>
+
 ### 5. 📌️ 이달의 병해 정보
-### 6. 😊 마이페이지
-
-- React Canvas를 이용하여 사용자의 웹캠화면에 그림을 그릴 수 있도록 하였습니다.
-- 손 모양에 따라서 그리기, 지우기, 초기화 등 그림그리기 기본 기능을 이용할 수 있도록 하였습니다.
+- 작물마다 어떤 병해충의 발생위험이 높은지 3 단계(경보, 주의보, 예보)로 나누어 달마다 주의해야할 병해충에 대한 정보를 제공합니다.
+- 1 월부터 12 월 까지 달마다 주의해야할 병해충, 병해의 종류를 파악할 수 있는 정보를 제공합니다.
 <div align="center">
 
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/ebbd8951-33b6-45c1-9c76-7f84f8d10874" height="200" width="100%" >|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/98b38baa-312f-4777-94a2-eec5f9367e0d" height="200" width="100%"> |
-|:---:|:---:|
-|손모양에 따른 그리기 기능|벡터 계산|
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/ff8ac359-a89d-4f0f-84cd-159b3eaf3419"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/71a22d26-d404-4d0c-9122-bcfff934ab37"  width="100%" >|
-|:---:|:---:|
-|손 모양에 따른 기능| 각 지점 벡터|
-
-
+| <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/328506e7-7f88-45ff-8d47-a6361f76e17d"  width="80%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/42643686-fdc6-489c-b532-b28bfd930df1"  width="80%" > |
+|:----------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+|                                                           현황 파악 지도                                                           |                                                            신고 상세내역                                                            |   
 
 </div>
+
 
 
 <hr>
 
-### 3. 📄 글자인식
-- Canvas에 cat이란 단어를쓰면 Tesseract를 이용하여 cat을 문자로 인식할 수 있도록 하였습니다.
-- 전처리(기울기, 매끄럽게 다듬기) 등을 통해서 인식률을 높였습니다.
-
-<div align="center">
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/a6c5c53e-450d-4e9a-a859-72c17c5beefa" width="100%" height="100%">
-</div>
-
-
-Game Mode 종류
-1. 단어 따라쓰기 ( WORD TRACING )
-2. 나의 화면 꾸미기 ( DECORATING )
-
-Game Player
-1. 나홀로 게임
-2. 1 vs 1 매치 게임
-
-<div align="center">
-
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/d44c77dc-f7d4-419f-bb43-89332203bd3d" width="100%" >
-
-</div>
-
-<hr>
-
-## 1.  🎮 단어 따라쓰기 ( WORD TRACING )
-
-<div align="center">
-
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/b39b6ced-acc0-40cf-8ed7-fa7752eb65ae" width="100%" >
-
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/fb8f9b1b-e0d1-4730-8fa7-b386e3b21282">
-
-</div>
-
-- 랜덤으로 제시된 단어를 따라서 작성합니다.
-- "OK" 손동작(엄지 척)을 취하면 정답이 맞는지 확인해 줍니다.
-- 정답을 맞추면 Score가 100점씩 증가합니다.
-
-## 2.  🎮 나의 화면 꾸미기 ( DECORATING )
-
-<div align="center">
-
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/052d846b-7f58-420d-b080-5157d6ddbea7" width="100%" >
-
-</div>
-
-- 게임방법
-
-<div align="center">
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/3c60b7d5-5949-4522-8d82-2ccd85d5241e"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/1a2800e9-af3d-4feb-a68b-4a62a08de101"  width="100%" >|
-|:---:|:---:|
-|게임 방법1| 게임 방법2| 
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/c1aeb492-d95b-4d69-8c0e-5ea8c2c9bbd0"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/5a1ac0ee-3a6c-4b4a-9679-ba15a04b3d56"  width="100%" >|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/0906ab63-cf9a-4c87-95a8-26fdcd4df53e"  width="100%"> |
-|:---:|:---:|:---:|
-|게임 방법3 | 게임 방법4 |게임 방법5|
-
-</div>
-
-<hr>
-
-- 예시
-<div align="center">
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/fb7c0810-c933-426f-ab83-68743bfc770d"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/a473501c-9839-4f8e-9c0c-0c9a43b71e90"  width="100%" >|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/047e3bac-2eaf-4dd6-ae96-3d3def6a2138"  width="100%"> |
-|:---:|:---:|:---:|
-|단어 작성| 아이콘 생성| 아이콘 이동|
-
-</div>
-
-- 원하는 단어를 작성합니다.
-- 스페이스바( Space bar )를 누르면 아이콘 생성 API에 요청해 해당 단어의 아이콘이 랜덤으로 화면에 나옵니다.
-- 마우스 커서를 이용해 아이콘을 움직이며 웹화면을 꾸밀 수 있습니다.
-- 아이콘을 배치하고 화면을 이미지로 다운로드할 수 있습니다.
-
-##  🆚 1 vs 1 대결모드
-
-<div align="center">
-
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/78c8ba24-cc28-4c4b-ac98-bbfffff1a218" height="100%" width="100%" >
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/9d7ee26e-c9e9-424f-ab64-4a9853beca1c"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/f58b179c-a620-4121-bf44-e065b11116ca"  width="100%" >|
-|:---:|:---:|
-|방 생성| 상대방 입장 대기 |
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/86d7f8d4-9f30-4339-9df2-a390d11a9443"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/323f2170-0cbe-49b1-8e42-0b37304444fc"  width="100%" >|
-|:---:|:---:|
-|대결 시작| 대결 중 |
-</div>
-
-< 단어 따라쓰기 ( WORD TRACING ) >
-- 플레이 하고자 하는 게임의 모드를 선택 후 방을 생성합니다.
-- 상대방이 입장을 하게 되면 게임이 시작하게 됩니다.
-- 제시된 단어를 작성하여 OK모션( 엄지 척 )으로 제출합니다.
-- 제한시간동안 Score가 높은 사람이 승리합니다.
-
-< 나의 화면 꾸미기 ( DECORATING ) >
-- 입장 후 각자 화면에 원하는 아이콘의 단어를 작성합니다.
-- 스페이스바를 눌러 문자를 아이콘으로 전환합니다.
-- 원하는 위치에 아이콘을 위치시킨 후 프로필을 꾸밉니다.
-
-<hr>
 
 ##  💾 시스템 설계도
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/59c46ea5-5656-40c6-b63b-9558914a41ae" height="100%" width="100%" >
+<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/c1aa786d-dee6-4f1a-beb4-a0d2525368cd" height="100%" width="100%" >
 
+##  💾 시스템 구조
+<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/8341a370-319f-4e1b-971c-ba7466893875" height="100%" width="100%" >
 <hr>
 
 ## 🛠️ 아쉽거나 어려웠던점
-- 2인용 게임에서 나의 화면 꾸미기 ( DECORATING )로 플레이하면 한 화면에 두 사람이 서로 글씨를 작성해 프로필을 같이 꾸미는 기능 구현까지 성공했었다. 하지만 상대방이 그린 점들의 좌표를 실시간으로 계속 공유하고 캔버스에 동시에 그려주는 기능에 있어서 좌표가 조금 부정확하게 그려지는 부분이 있어 제출전에 다시 개인의 프로필을 꾸미는 방법으로 진행했었다. 개발시간이 더 있었다면 [공유 프로필 꾸미기] 기능도 추가해보고 싶다.
 
-- 로컬에서 WebRTC는 따로 STUN TURN서버가 필요없지만 배포를하고 외부에서 서로 1대1 대결을 하려면 서버가 꼭 필요했었다.
-  인터넷에 찾아보니 구글이나 다른 곳에서 무료로 지원해주는 STUN/TURN 서버들이 이전에는 있었지만 현재는 전부 막혔다는 사실을 접했다.
-  그래서 부랴부랴 외국 유튜버의 기술블로그를 보며 Azure 서버를 하나 더 생성해 마감시간안에 완성할 수 있었다.
 
 ## 📌 페이지 화면
 
@@ -263,18 +207,4 @@ Game Player
 
 ### 5. 나의 화면 꾸미기 ( DECORATING )
 
-<p align="center">
 
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/d302d32f-d463-4776-b090-7dd831bfdb7a"  width="100%"> |
-|:---:|
-|입장 화면|
-
-<div align="center">
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/fb7c0810-c933-426f-ab83-68743bfc770d"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/a473501c-9839-4f8e-9c0c-0c9a43b71e90"  width="100%" >|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/047e3bac-2eaf-4dd6-ae96-3d3def6a2138"  width="100%"> |
-|:---:|:---:|:---:|
-|단어 작성| 아이콘 생성| 아이콘 이동|
-
-</div>
-
-</p>
