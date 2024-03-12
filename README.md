@@ -2,7 +2,7 @@
   <a href="https://github.com/Imagine-ENTZ/AirDrawing" title="AwesomeCV Documentation">
     <!-- <img alt="AwesomeCV" src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/e1be76c5-3bf5-478a-8bc4-c790ef10f3a2" width="100%" height="100%" /> -->
 
-<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/e805e4b9-b567-4fca-af6d-6a7e6bd23529"/>
+<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/e805e4b9-b567-4fca-af6d-6a7e6bd23529" width="60%"/>
 
   </a>
   <br />
@@ -79,6 +79,45 @@
 - 판별하고자 하는 작물을 선택 후 병해에 대한 정보를 얻을 수 있습니다.
 - 이미지를 업로드하고 병해가 발생한 부분만을 업로드 합니다.
 - 병해 결과로 병해가 발생한 부분과 병해명을 확인할 수 있습니다.
+
+### 2. 📢 병해 신고
+- 병해 판단 결과로 병해 신고 기능을 이용할 수 있습니다.
+- 이미지, 제목, 글 정보를 담아 신고할 수 있습니다.
+- 위치 정보를 마커를 통해 움직이며 설정할 수 있습니다.
+
+
+### 3. 🗺️ 병해 현황 파악
+- 다른 사용자들의 신고 내역을 지도를 통해 확인할 수 있습니다. 지도 마커를 통해 신고 내역 위치를 확인하고 신고 병해에 대한 정보를 얻을 수 있습니다. 
+- 마커의 색상에 따라서 작물의 종류를 파악할 수 있으며, 또한 신고 내역에 대한 상세정보를 확인할 수 있습니다.
+
+### 4. 📗 병해 도감
+- AI 모델로 판별할 수 없는 많은 병해들을 농민이 직접 병해의 대표 이미지를 보면서 비교하고 판단할 수 있도록 구현하였습니다.
+- 각 병해명과 함께 나와 있는 이미지를 클릭하면 해당 병해의 방제법을 포함한 상세 정보를 확인할 수 있습니다.
+
+
+### 5. 📌️ 이달의 병해 정보
+- 작물마다 어떤 병해충의 발생위험이 높은지 3 단계(경보, 주의보, 예보)로 나누어 달마다 주의해야할 병해충에 대한 정보를 제공합니다.
+- 1 월부터 12 월 까지 달마다 주의해야할 병해충, 병해의 종류를 파악할 수 있는 정보를 제공합니다.
+
+
+
+<hr>
+
+
+##  💾 시스템 설계도
+<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/c1aa786d-dee6-4f1a-beb4-a0d2525368cd" height="100%" width="100%" >
+
+<hr>
+##  💾 시스템 구조
+<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/8341a370-319f-4e1b-971c-ba7466893875" height="100%" width="100%" >
+<hr>
+
+## 🛠️ 아쉽거나 어려웠던점
+
+<hr/>
+
+## 📌 페이지 화면
+### 1. 🐛 병해 판별
 <div align="center">
 
 | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/9c2d59c2-d064-4d44-9d5c-b8074640b865"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/54961c76-c0ee-44d6-8ad7-28a46746afeb"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/46943e1f-9be9-4b47-b9eb-6c4f813d40b7"  width="100%"> |
@@ -92,13 +131,10 @@
 | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/209b964f-4003-4ae7-bc73-a03b6900c84e"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/7403561a-0e2b-45b7-9109-ea64d32f1194"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/ba901ae3-4759-4d32-979e-824383040ede"  width="100%"> |
 |:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
 |                                                            이미지 자르기                                                            |                                                             병해 진단                                                              |                                                             병해 결과                                                             |
-
 </div>
+<hr>
 
 ### 2. 📢 병해 신고
-- 병해 판단 결과로 병해 신고 기능을 이용할 수 있습니다.
-- 이미지, 제목, 글 정보를 담아 신고할 수 있습니다.
-- 위치 정보를 마커를 통해 움직이며 설정할 수 있습니다.
 <div align="center">
 
 | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/250045da-3f6d-4200-a989-ce4aecd15375"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/753024c2-384f-4897-aa4f-5170b2e91205"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/1b2a5120-1ad4-4c30-bff6-8f97b5c0525c"  width="100%"> |
@@ -113,10 +149,9 @@
 |                                                           마커로 위치 설정                                                           |                                                            마커로 위치 설정                                                             |                                                             신고 완료                                                             |
 
 </div>
+<hr>
 
 ### 3. 🗺️ 병해 현황 파악
-- 다른 사용자들의 신고 내역을 지도를 통해 확인할 수 있습니다. 지도 마커를 통해 신고 내역 위치를 확인하고 신고 병해에 대한 정보를 얻을 수 있습니다. 
-- 마커의 색상에 따라서 작물의 종류를 파악할 수 있으며, 또한 신고 내역에 대한 상세정보를 확인할 수 있습니다.
 <div align="center">
 
 | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/d6ba0b71-2e73-445a-bf89-43abb8adc0f3"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/b482ca2a-d24b-468d-af0c-cc4a30449dcd"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/4cde9b38-5775-46ca-a337-ea84bcf32b5c"  width="100%"> |
@@ -124,10 +159,9 @@
 |                                                           현황 파악 지도                                                            |                                                            신고 상세내역                                                             |                                                             신고 상세내역                                                           |
 
 </div>
+<hr>
 
 ### 4. 📗 병해 도감
-- AI 모델로 판별할 수 없는 많은 병해들을 농민이 직접 병해의 대표 이미지를 보면서 비교하고 판단할 수 있도록 구현하였습니다.
-- 각 병해명과 함께 나와 있는 이미지를 클릭하면 해당 병해의 방제법을 포함한 상세 정보를 확인할 수 있습니다.
 <div align="center">
 
 | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/b35db91e-4d26-46da-9893-0eba457b0211"  width="100%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/27aaf932-47ca-42bd-932c-bb5f7b692d19"  width="100%" > | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/4fa5f96f-e7d8-427f-8db7-aea5a218a285"  width="100%"> |
@@ -135,10 +169,9 @@
 |                                                             병해 도감                                                             |                                                            병해 도감 1                                                             |                                                            병해 도감 2                                                            |
 
 </div>
+<hr>
 
 ### 5. 📌️ 이달의 병해 정보
-- 작물마다 어떤 병해충의 발생위험이 높은지 3 단계(경보, 주의보, 예보)로 나누어 달마다 주의해야할 병해충에 대한 정보를 제공합니다.
-- 1 월부터 12 월 까지 달마다 주의해야할 병해충, 병해의 종류를 파악할 수 있는 정보를 제공합니다.
 <div align="center">
 
 | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/328506e7-7f88-45ff-8d47-a6361f76e17d"  width="80%"> | <img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/42643686-fdc6-489c-b532-b28bfd930df1"  width="80%" > |
@@ -148,63 +181,5 @@
 </div>
 
 
-
-<hr>
-
-
-##  💾 시스템 설계도
-<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/c1aa786d-dee6-4f1a-beb4-a0d2525368cd" height="100%" width="100%" >
-
-##  💾 시스템 구조
-<img src="https://github.com/rong5026/WEBSTORYBOY_SOURCE/assets/77156858/8341a370-319f-4e1b-971c-ba7466893875" height="100%" width="100%" >
-<hr>
-
-## 🛠️ 아쉽거나 어려웠던점
-
-
-## 📌 페이지 화면
-
-### 1. 메인페이지
-<p align="center">
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/7cb49ab8-3f3c-4b2e-bd1e-fd1e35fdd187"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/fd6a0e59-dfe6-4843-aac2-8977370dc8f4"  width="100%" >|
-|:---:|:---:|
-|메인| Get Started|
-
-</p>
-
-### 2. 로그인, 회원가입
-
-<p align="center">
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/a89dbad0-89bb-47ee-a3cd-29e710812b58"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/12a4668d-55f1-40cd-9f0b-10e5ddb404f0"  width="100%" >|
-|:---:|:---:|
-|로그인| 회원가입 |
-
-</p>
-
-### 3. 게임 모드 선택
-
-<p align="center">
-
-<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/efa002a2-3ee5-4a30-918b-0acf16b7f469"  width="100%">
-
-</p>
-
-### 4. 단어 따라쓰기 ( WORD TRACING )
-
-<p align="center">
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/0de61e3e-13bd-486a-ac5a-c20e7e8021a3"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/5d01ea55-5fdf-4324-9563-6c4d7c4bdd6a"  width="100%" >|
-|:---:|:---:|
-| 입장 화면| 따라쓰기 |
-
-|<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/c7ec8648-d51c-46ca-a0bf-d32447a03a5f"  width="100%"> |<img src="https://github.com/stock-price-calculator/tradingbot/assets/77156858/62d32eef-964a-4cb0-b6a5-2829ac0917d0"  width="100%" >|
-|:---:|:---:|
-|엄지로 정답확인| 오답 화면 |
-
-</p>
-
-### 5. 나의 화면 꾸미기 ( DECORATING )
 
 
