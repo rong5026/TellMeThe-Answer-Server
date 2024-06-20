@@ -53,7 +53,7 @@
 - AI 모델 : Yolov5, Colab
 
 ## 👬 팀 소개
-- 홍영환 - <a href="https://github.com/TellMeThe-Answer/Server">백엔드</a>, <a href="https://github.com/TellMeThe-Answer/Client">프론트</a> , <a href="https://github.com/TellMeThe-Answer/Client">AI 서버</a>
+- 홍영환 - <a href="https://github.com/TellMeThe-Answer/Server">백엔드</a>, <a href="https://github.com/TellMeThe-Answer/Client">프론트</a> , <a href="https://github.com/TellMeThe-Answer/AI_Server">AI 서버</a>
 - 조준희 - <a href="https://github.com/TellMeThe-Answer/Server">백엔드</a>, <a href="https://github.com/TellMeThe-Answer/Client">프론트</a>
 - 성현주 - AI 모델
 - 전재민 - <a href="https://github.com/TellMeThe-Answer/Client">프론트</a>
